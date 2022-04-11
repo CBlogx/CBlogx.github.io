@@ -1,0 +1,4 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "Cheng の website"
+theme = "hugo-theme-stack"
