@@ -1,0 +1,283 @@
+baseurl: "https://cblogx.github.io/CBlogxBlog/"
+languageCode: en-us
+theme: ""
+paginate: 5
+publishDir: docs
+
+languages:
+  zh-cn:
+    languageName: 中文
+    title: 小程同学的博客
+    weight: 1
+  en:
+    languageName: English
+    title: Cheng の webstie
+    weight: 2
+
+# Change it to your Disqus shortname before using
+disqusShortname: hugo-theme-stack
+
+# GA Tracking ID
+googleAnalytics:
+
+# Theme i18n support
+# Available values: ar, ca, de, el, en, es, fr, id, it, ja, ko, nl, pt-br, th, uk, zh-cn, zh-hk, zh-tw
+DefaultContentLanguage: en
+
+# Set hasCJKLanguage to true if DefaultContentLanguage is in [zh-cn ja ko]
+# This will make .Summary and .WordCount behave correctly for CJK languages.
+hasCJKLanguage: false
+
+permalinks:
+  post: /p/:slug/
+  page: /:slug/
+
+# 站点全局设置
+params:
+  # 在首页和归档页面输出来自指定section的文章
+  mainSections:
+    - post
+  # 特色图片使用的字段，默认为image
+  featuredImageField: image
+  # rss输出文章完整内容
+  rssFullContent: true
+  # 站点图标
+  # 从static文件夹下寻找
+  favicon: /images/favicon.png
+
+  footer:
+    since: 2020
+    customText: "Website Built By Cheng"
+
+  # 日期格式设置
+  dateFormat:
+    # 文章更新日期格式
+    published: Jan 02, 2006
+    # 文章发布日期格式
+    lastUpdated: Jan 02, 2006 15:04 MST
+
+  # 与左侧边栏相关的设置
+  sidebar:
+    # 头像底部的Emoji
+    emoji: 💙
+    # 站点介绍
+    subtitle: 小程同学颜值高
+    # 博主头像
+    avatar:
+      # 是否显示
+      enabled: true
+      # 是否在本地
+      local: true
+      # 本地放置在assets/img文件夹下
+      src: img/avatar.png
+
+  # 文章页面相关设置
+  article:
+    # 所有文章启用KaTeX(数学公式)
+    math: false
+    # 所有文章启用目录
+    toc: true
+    # 所有文章启用阅读时间
+    readingTime: true
+    # 文章协议设置
+    license:
+      # 是否在文章底部显示协议信息
+      enabled: false
+      # 默认文章协议
+      default: Licensed under CC BY-NC-SA 4.0
+
+  # 留言系统设置
+  comments:
+    # 是否在文章底部默认显示评论系统
+    enabled: false
+    # 评论系统的提供商
+    provider: disqus
+
+    disqusjs:
+      shortname:
+      apiUrl:
+      apiKey:
+      admin:
+      adminLabel:
+
+    utterances:
+      repo:
+      issueTerm: pathname
+      label:
+
+    remark42:
+      host:
+      site:
+      locale:
+
+    vssue:
+      platform:
+      owner:
+      repo:
+      clientId:
+      clientSecret:
+      autoCreateIssue: false
+
+    # Waline client configuration see: https://waline.js.org/en/reference/client.html
+    waline:
+      serverURL:
+      lang:
+      visitor:
+      avatar:
+      emoji:
+        - https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo
+      requiredMeta:
+        - name
+        - email
+        - url
+      placeholder:
+      locale:
+        admin: Admin
+
+    twikoo:
+      envId:
+      region:
+      path:
+      lang:
+
+    # See https://cactus.chat/docs/reference/web-client/#configuration for description of the various options
+    cactus:
+      defaultHomeserverUrl: "https://matrix.cactus.chat:8448"
+      serverName: "cactus.chat"
+      siteName: "" # You must insert a unique identifier here matching the one you registered (See https://cactus.chat/docs/getting-started/quick-start/#register-your-site)
+
+    giscus:
+      repo:
+      repoID:
+      category:
+      categoryID:
+      mapping:
+      lightTheme:
+      darkTheme:
+      reactionsEnabled: 1
+      emitMetadata: 0
+
+    gitalk:
+      owner:
+      admin:
+      repo:
+      clientID:
+      clientSecret:
+
+    cusdis:
+      host:
+      id:
+
+  # 主页右侧边栏小部件设置
+  widgets:
+    homepage:
+      # 搜索
+      - type: search
+      # 归档
+      - type: archives
+        params:
+          # 输出条数限制
+          limit: 5
+      # 目录
+      - type: categories
+        params:
+          limit: 10
+      # 归档云
+      - type: tag-cloud
+        params:
+          limit: 10
+    page:
+      - type: toc
+
+  # 标签相关设置
+  opengraph:
+    twitter:
+      # 博主Twitter用户名
+      site:
+
+      # Twitter Card样式选择: summary, summary_large_image
+      card: summary_large_image
+
+  # 默认特色图片设置
+  defaultImage:
+    # 标签默认图片
+    opengraph:
+      # 是否启用
+      enabled: false
+      # 是否为本地图片，如果设置成true，主题会在根目录assets文件夹下寻找
+      local: false
+      # 图片地址
+      src:
+
+  colorScheme:
+    # Display toggle
+    toggle: true
+
+    # Available values: auto, light, dark
+    default: auto
+
+  imageProcessing:
+    cover:
+      enabled: true
+    content:
+      enabled: true
+
+### Custom menu
+### See https://docs.stack.jimmycai.com/configuration/custom-menu.html
+### To remove about, archive and search page menu item, remove `menu` field from their FrontMatter
+# 配置左侧菜单栏
+menu:
+  # 左侧跳转菜单
+  main: [
+      {
+        identifier: home,
+        name: "home",
+        url: /,
+        weight: 1,
+        params: { icon: home, newTab: true },
+      },
+      {
+        identifier: post,
+        name: "post",
+        url: /post/,
+        weight: 100,
+        # icon默认在assets/icons下的svg
+        params: { icon: rss, newTab: true },
+      },
+    ]
+  # 配置左侧图标信息
+  social:
+    - identifier: github
+      name: GitHub
+      url: https://github.com
+      params:
+        icon: brand-github
+
+related:
+  includeNewer: true
+  threshold: 60
+  toLower: false
+  indices:
+    - name: tags
+      weight: 100
+
+    - name: categories
+      weight: 200
+
+markup:
+  goldmark:
+    renderer:
+      ## Set to true if you have HTML content inside Markdown
+      unsafe: false
+  tableOfContents:
+    endLevel: 4
+    ordered: true
+    startLevel: 2
+  highlight:
+    noClasses: false
+    codeFences: true
+    guessSyntax: true
+    lineNoStart: 1
+    lineNos: true
+    lineNumbersInTable: true
+    tabWidth: 4
