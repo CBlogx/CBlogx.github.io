@@ -3,6 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://cblogx.github.io/CBlogxBlog/categories/</loc>
+    <lastmod>2022-04-12T09:26:13+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -15,6 +16,7 @@
                 />
   </url><url>
     <loc>https://cblogx.github.io/CBlogxBlog/</loc>
+    <lastmod>2022-04-12T09:26:13+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -26,7 +28,14 @@
                 href="https://cblogx.github.io/CBlogxBlog/"
                 />
   </url><url>
+    <loc>https://cblogx.github.io/CBlogxBlog/tags/hugo/</loc>
+    <lastmod>2022-04-12T09:26:13+08:00</lastmod>
+  </url><url>
+    <loc>https://cblogx.github.io/CBlogxBlog/post/</loc>
+    <lastmod>2022-04-12T09:26:13+08:00</lastmod>
+  </url><url>
     <loc>https://cblogx.github.io/CBlogxBlog/tags/</loc>
+    <lastmod>2022-04-12T09:26:13+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -37,5 +46,11 @@
                 hreflang="en"
                 href="https://cblogx.github.io/CBlogxBlog/tags/"
                 />
+  </url><url>
+    <loc>https://cblogx.github.io/CBlogxBlog/categories/test/</loc>
+    <lastmod>2022-04-12T09:26:13+08:00</lastmod>
+  </url><url>
+    <loc>https://cblogx.github.io/CBlogxBlog/p/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/</loc>
+    <lastmod>2022-04-12T09:26:13+08:00</lastmod>
   </url>
 </urlset>

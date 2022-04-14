@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on Cheng の webstie</title>
+        <link>https://cblogx.github.io/CBlogxBlog/post/</link>
+        <description>Recent content in Posts on Cheng の webstie</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Tue, 12 Apr 2022 09:26:13 +0800</lastBuildDate><atom:link href="https://cblogx.github.io/CBlogxBlog/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>初来乍到</title>
+        <link>https://cblogx.github.io/CBlogxBlog/p/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/</link>
+        <pubDate>Tue, 12 Apr 2022 09:26:13 +0800</pubDate>
+        
+        <guid>https://cblogx.github.io/CBlogxBlog/p/%E5%88%9D%E6%9D%A5%E4%B9%8D%E5%88%B0/</guid>
+        <description>&lt;p&gt;欢迎来到小程同学的私人博客，Maybe 日后会开放吧（等我成为某学术大佬的一天哈哈）。&lt;br&gt;
+这个网站主要是用于分享学习经验，记录生活中的奇闻趣事及各种想记录的事，不出意外的话这个网站将会伴随我至研究生毕业。&lt;br&gt;
+（当然这个意外的出现概率会有点高 30% &amp;lt; x &amp;lt; 40%）。&lt;br&gt;
+作为一名自认为有艺术细胞的站主，网站主要采用的配色将会从传统中国色入手，会在日后的一次次更新中体现出来。&lt;br&gt;
+This is my first article after using hugo template to create private webstie, maybe it will be public one day&amp;hellip;&lt;br&gt;
+Website is uesd to share something interesting include all of the aspects and record life.&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
