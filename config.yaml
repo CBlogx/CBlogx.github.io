@@ -2,6 +2,7 @@ baseurl: "https://cblogx.github.io/CBlogxBlog/"
 languageCode: en-us
 theme: ""
 paginate: 5
+# 配置生成的静态页面目录
 publishDir: docs
 
 languages:
