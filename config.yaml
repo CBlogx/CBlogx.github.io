@@ -233,14 +233,14 @@ menu:
       {
         identifier: home,
         name: "home",
-        url: /,
+        url: ./,
         weight: 1,
         params: { icon: home, newTab: true },
       },
       {
         identifier: post,
         name: "post",
-        url: /post/,
+        url: ./post/,
         weight: 100,
         # icon默认在assets/icons下的svg
         params: { icon: rss, newTab: true },

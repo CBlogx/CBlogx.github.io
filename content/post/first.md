@@ -1,7 +1,7 @@
 ---
 title: "初来乍到"
 date: 2022-04-12T09:26:13+08:00
-draft: true
+draft: false
 tags: ["Hugo"]
 categories: ["Test"]
 ---
