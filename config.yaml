@@ -37,7 +37,6 @@ permalinks:
 params:
   # 在首页和归档页面输出来自指定section的文章
   mainSections:
-    - post
     - vue
   # 特色图片使用的字段，默认为image
   featuredImageField: image
@@ -234,14 +233,14 @@ menu:
       {
         identifier: home,
         name: "home",
-        url: ,
+        url: /,
         weight: 1,
         params: { icon: home, newTab: true },
       },
       {
-        identifier: post,
-        name: "post",
-        url: /post,
+        identifier: vue,
+        name: "vue",
+        url: /vue,
         weight: 100,
         # icon默认在assets/icons下的svg
         params: { icon: rss, newTab: true },
