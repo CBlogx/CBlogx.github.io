@@ -1,4 +1,4 @@
-baseurl: "https://cblogx.github.io/CBlogxBlog/"
+baseurl: "https://cblogx.github.io/"
 languageCode: en-us
 theme: ""
 paginate: 5
@@ -30,7 +30,7 @@ DefaultContentLanguage: en
 hasCJKLanguage: false
 
 permalinks:
-  post: /p/:slug/
+  vue: /vue/:slug/
   page: /:slug/
 
 # 站点全局设置
@@ -38,6 +38,7 @@ params:
   # 在首页和归档页面输出来自指定section的文章
   mainSections:
     - post
+    - vue
   # 特色图片使用的字段，默认为image
   featuredImageField: image
   # rss输出文章完整内容
@@ -75,7 +76,7 @@ params:
   # 文章页面相关设置
   article:
     # 所有文章启用KaTeX(数学公式)
-    math: false
+    math: true
     # 所有文章启用目录
     toc: true
     # 所有文章启用阅读时间
@@ -233,14 +234,14 @@ menu:
       {
         identifier: home,
         name: "home",
-        url: ./,
+        url: ,
         weight: 1,
         params: { icon: home, newTab: true },
       },
       {
         identifier: post,
         name: "post",
-        url: ./post/,
+        url: /post,
         weight: 100,
         # icon默认在assets/icons下的svg
         params: { icon: rss, newTab: true },
