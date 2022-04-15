@@ -2,6 +2,7 @@ baseurl: "https://cblogx.github.io/CBlogxBlog/"
 languageCode: en-us
 theme: ""
 paginate: 5
+publishDir: docs
 
 languages:
   zh-cn:
