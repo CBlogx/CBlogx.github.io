@@ -1,6 +1,33 @@
 /* Place your custom SCSS in HUGO_SITE_FOLDER/assets/scss/custom.scss */
-.site-avatar{
-    .site-logo{
-        background: linear-gradient(to right, rgb(96, 165, 250), rgb(52, 211, 153))
-    }
+.site-avatar {
+  .site-logo {
+    background: linear-gradient(to right, rgb(96, 165, 250), rgb(52, 211, 153));
+  }
 }
+body{
+  background-repeat: no !important;
+  background-position: center !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+// .article-page {
+//   &.hide-sidebar-sm .left-sidebar {
+//     display: none;
+
+//     @include respond(md) {
+//       display: inherit;
+//     }
+//   }
+
+//   .main-article {
+//     background: var(--card-background);
+//     border-radius: var(--card-border-radius);
+//     box-shadow: var(--shadow-l2); //修改阴影样式
+//     overflow: hidden;
+//   }
+// }

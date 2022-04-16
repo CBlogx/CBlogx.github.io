@@ -30,6 +30,7 @@ DefaultContentLanguage: en
 hasCJKLanguage: false
 
 permalinks:
+  # slug 为文章关键字，未定义的情况下使用title，即文章标题
   vue: /vue/:slug/
   page: /:slug/
 
@@ -75,7 +76,7 @@ params:
   # 文章页面相关设置
   article:
     # 所有文章启用KaTeX(数学公式)
-    math: true
+    math: false
     # 所有文章启用目录
     toc: true
     # 所有文章启用阅读时间
@@ -235,7 +236,7 @@ menu:
         name: "home",
         url: /,
         weight: 1,
-        params: { icon: home, newTab: true },
+        params: { icon: home-icon, newTab: true },
       },
       {
         identifier: vue,
@@ -243,7 +244,7 @@ menu:
         url: /vue,
         weight: 100,
         # icon默认在assets/icons下的svg
-        params: { icon: rss, newTab: true },
+        params: { icon: vue-icon, newTab: true },
       },
     ]
   # 配置左侧图标信息

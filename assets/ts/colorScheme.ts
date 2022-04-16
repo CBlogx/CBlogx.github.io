@@ -13,13 +13,13 @@ class StackColorScheme {
 
     if (toggleEl) this.bindClick(toggleEl);
 
-    if (document.body.style.transition == "")
+    if (document.body.style.transition == ""){}
       // 更改背景的变
-      document.body.setAttribute(
-        "style",
-        `transition: background-color .5s ease;
-        `
-      );
+      // document.body.setAttribute(
+      //   "style",
+      //   `transition: background-color .5s ease;
+      //   `
+      // );
     // document.body.style.setProperty("transition", "background .1s ease");
   }
 

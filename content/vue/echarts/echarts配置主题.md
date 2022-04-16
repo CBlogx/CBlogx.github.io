@@ -1,8 +1,8 @@
 ---
-title: "vue配置Echarts"
+title: "Echarts系列（2）配置Echarts主题"
 date: 2022-04-15T18:56:42+08:00
 draft: false
-tag: ["echarts", "vue"]
+tags: ["echarts", "vue"]
 # slug: "vue-echarts"
 categories: ["echarts", "vue"]
 ---
