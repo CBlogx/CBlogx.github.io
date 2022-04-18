@@ -34,6 +34,7 @@
             </div>
         {{ end }}
 
+        <!-- 文章阅读时间统计 -->
         {{ if .Site.Params.article.readingTime }}
             <div>
                 {{ partial "helper/icon" "clock" }}
@@ -41,6 +42,16 @@
                     {{ T "article.readingTime" .ReadingTime }}
                 </time>
             </div>
+        {{ end }}
+
+        <!-- 文章字数统计 -->
+        {{ if .Site.Params.article.readingTime }} 
+        <div>
+            {{ partial "helper/icon" "words" }} 
+            <time class="article-words">
+                {{ .WordCount }} words
+            </time>
+        </div>
         {{ end }}
     </footer>
     {{ end }}

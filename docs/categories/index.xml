@@ -7,14 +7,6 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <lastBuildDate>Mon, 18 Apr 2022 00:17:03 +0800</lastBuildDate><atom:link href="https://cblogx.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>nuxt</title>
-        <link>https://cblogx.github.io/categories/nuxt/</link>
-        <pubDate>Mon, 18 Apr 2022 00:17:03 +0800</pubDate>
-        
-        <guid>https://cblogx.github.io/categories/nuxt/</guid>
-        <description></description>
-        </item>
-        <item>
         <title>vue</title>
         <link>https://cblogx.github.io/categories/vue/</link>
         <pubDate>Mon, 18 Apr 2022 00:17:03 +0800</pubDate>
@@ -25,7 +17,7 @@
         <item>
         <title>echarts</title>
         <link>https://cblogx.github.io/categories/echarts/</link>
-        <pubDate>Fri, 15 Apr 2022 19:25:21 +0800</pubDate>
+        <pubDate>Fri, 15 Apr 2022 18:56:42 +0800</pubDate>
         
         <guid>https://cblogx.github.io/categories/echarts/</guid>
         <description></description>

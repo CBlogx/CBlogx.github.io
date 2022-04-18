@@ -4,7 +4,7 @@ date: 2022-04-15T19:25:21+08:00
 draft: false
 image: "/images/background_dark.jpg"
 tags: ["echarts", "vue"]
-categories: ["echarts", "vue"]
+categories: ["vue"]
 description: "Echarts保姆级教程"
 ---
 

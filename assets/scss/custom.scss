@@ -4,7 +4,15 @@
     background: linear-gradient(to right, rgb(96, 165, 250), rgb(52, 211, 153));
   }
 }
-body{
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  /* 滚动条不遮挡页面内容 */
+  overflow-y: overlay;
+}
+body {
   background-repeat: no !important;
   background-position: center !important;
   background-size: cover !important;
@@ -15,19 +23,21 @@ body{
   left: 0;
 }
 
-// .article-page {
-//   &.hide-sidebar-sm .left-sidebar {
-//     display: none;
+/* 滚动条整体样式 */
+::-webkit-scrollbar {
+  position: relative;
+  width: 4px;
+  height: 100%;
+}
 
-//     @include respond(md) {
-//       display: inherit;
-//     }
-//   }
+/* 滚动条里的小方块 */
+::-webkit-scrollbar-thumb {
+  width: 4px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.5);
+}
 
-//   .main-article {
-//     background: var(--card-background);
-//     border-radius: var(--card-border-radius);
-//     box-shadow: var(--shadow-l2); //修改阴影样式
-//     overflow: hidden;
-//   }
-// }
+/* 滚动条轨道 */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
