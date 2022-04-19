@@ -93,7 +93,7 @@ params:
     # 是否在文章底部默认显示评论系统
     enabled: false
     # 评论系统的提供商
-    provider: disqus
+    provider: utterances
 
     disqusjs:
       shortname:
@@ -103,8 +103,8 @@ params:
       adminLabel:
 
     utterances:
-      repo:
-      issueTerm: pathname
+      repo: CBlogx/CBlogx.github.io
+      issueTerm: title
       label:
 
     remark42:
