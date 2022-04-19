@@ -91,7 +91,7 @@ params:
   # 留言系统设置
   comments:
     # 是否在文章底部默认显示评论系统
-    enabled: false
+    enabled: true
     # 评论系统的提供商
     provider: utterances
 
