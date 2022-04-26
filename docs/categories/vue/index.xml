@@ -6,12 +6,41 @@
         <description>Recent content in vue on Cheng の webstie</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Mon, 18 Apr 2022 00:17:03 +0800</lastBuildDate><atom:link href="https://cblogx.github.io/categories/vue/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 25 Apr 2022 19:37:15 +0800</lastBuildDate><atom:link href="https://cblogx.github.io/categories/vue/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>关于 nuxt 中的 params 和 query</title>
+        <link>https://cblogx.github.io/post/%E5%85%B3%E4%BA%8E-nuxt-%E4%B8%AD%E7%9A%84-params-%E5%92%8C-query/</link>
+        <pubDate>Mon, 25 Apr 2022 19:37:15 +0800</pubDate>
+        
+        <guid>https://cblogx.github.io/post/%E5%85%B3%E4%BA%8E-nuxt-%E4%B8%AD%E7%9A%84-params-%E5%92%8C-query/</guid>
+        <description>&lt;h2 id=&#34;序言&#34;&gt;序言&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;忍不住骂一口，SHIT！这两天应老师要求把之前的 vue 项目用 nuxt 构建 ssr 渲染，在途中遇到一个不合理使用 router 的小问题居然折腾了我一天时间，白白浪费复习时间，不然我都复习完高数了(╬▔ 皿 ▔)凸&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;nuxt-中的-router&#34;&gt;nuxt 中的 router&lt;/h2&gt;
+&lt;p&gt;由于 nuxt 已经帮我们把 router 做了底层封装，它会在运行时检测指定文件夹下的目录结构和文件名，自动为我们配置 router，因此我们只需要按照官方规范命名的目录结构放置文件即可，今天所说的问题也是因为在这种配置产生。&lt;/p&gt;
+&lt;h2 id=&#34;params-问题描述&#34;&gt;params 问题描述&lt;/h2&gt;
+&lt;p&gt;原项目中使用了 params 作为路由参数进行传递，但由于页面属于左侧分页列表+右侧内容显示,如下。例如我们切换到第 2 页并点击第一个标题后，页面重新渲染，左侧分页列表切换回初始状态。
+&lt;img src=&#34;https://cblogx.github.io/images/issue_nuxt_01.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;params-使用注意&#34;&gt;params 使用注意&lt;/h2&gt;
+&lt;p&gt;在 nuxt 中，我们可以很轻松甚至不用额外声明的使用 params 来进行参数传递，这是极为方便的，但是 params 同时也充当路径的一部分。比如我们将比较 &amp;ldquo;/active&amp;rdquo; 和 &amp;ldquo;/active/1&amp;rdquo;，在不使用 nuxt 的情况下我们可以把它看成&amp;quot;/active&amp;quot;简单的携带了一个值为 1 的参数，有它无它并不会影响页面状态的变化，但是在使用了 nuxt 后，这个 params 既会被当成可传递的值也会被认为是需要跳转到&amp;quot;/active&amp;quot;的子路由，即跳转一个新的页面状态，因此当 params 的值发生改变时，nuxt 会帮助我们对页面会重新进行渲染，这一操作就会使得某些不需要做持久化存储的值在页面状态更新时丢失。&lt;/p&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;与 params 对应的 query 显然更适合于在 nuxt 处理局部状态的问题，params 和 query 的使用情景可以简单的概括为：params 适用于全局状态的变化，query 适用于局部状态的转换。&lt;/p&gt;
+&lt;p&gt;在 nuxt 中使用 params 与原生的 vue 上是略有不同的，原生 vue 的组件之间都是独立的、模块化的，页面创作自由度高，params 只是简单的被当作一个路由参数。而 nuxt 更像一个以路由为中心的 vue 集大成者（路由驱动模式），params 多担当了路由跳转的作用，路由之间的微妙变化会引起整个页面的状态发生变化。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>Nuxt系列（1）初识SSR</title>
-        <link>https://cblogx.github.io/vue/nuxt%E7%B3%BB%E5%88%971%E5%88%9D%E8%AF%86ssr/</link>
+        <link>https://cblogx.github.io/post/nuxt%E7%B3%BB%E5%88%971%E5%88%9D%E8%AF%86ssr/</link>
         <pubDate>Mon, 18 Apr 2022 00:17:03 +0800</pubDate>
         
-        <guid>https://cblogx.github.io/vue/nuxt%E7%B3%BB%E5%88%971%E5%88%9D%E8%AF%86ssr/</guid>
+        <guid>https://cblogx.github.io/post/nuxt%E7%B3%BB%E5%88%971%E5%88%9D%E8%AF%86ssr/</guid>
         <description>&lt;h1 id=&#34;什么是-ssr&#34;&gt;什么是 SSR&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;首先让我们来了解一下 MPA、SPA,最后你就明白了什么是 SSR&lt;/p&gt;
@@ -64,10 +93,10 @@
         </item>
         <item>
         <title>Echarts系列（1）vue-Echarts的基本使用</title>
-        <link>https://cblogx.github.io/vue/echarts%E7%B3%BB%E5%88%971vue-echarts%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
+        <link>https://cblogx.github.io/post/echarts%E7%B3%BB%E5%88%971vue-echarts%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</link>
         <pubDate>Fri, 15 Apr 2022 19:25:21 +0800</pubDate>
         
-        <guid>https://cblogx.github.io/vue/echarts%E7%B3%BB%E5%88%971vue-echarts%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
+        <guid>https://cblogx.github.io/post/echarts%E7%B3%BB%E5%88%971vue-echarts%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</guid>
         <description>&lt;img src="https://cblogx.github.io/images/background_dark.jpg" alt="Featured image of post Echarts系列（1）vue-Echarts的基本使用" /&gt;&lt;h1 id=&#34;vue-echarts-使用&#34;&gt;vue-echarts 使用&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;vue-echarts 和原生 echarts 的使用区别并不大，只是对原生的一些方法以及属性做了封装和修改，使用起来更加轻巧。下面这里以 vue2 示例介绍一下 vue-echarts 的简单使用。&lt;/p&gt;
@@ -251,10 +280,10 @@ inject 键名：UPDATE_OPTIONS_KEY&lt;/li&gt;
         </item>
         <item>
         <title>Echarts系列（2）配置Echarts主题</title>
-        <link>https://cblogx.github.io/vue/echarts%E7%B3%BB%E5%88%972%E9%85%8D%E7%BD%AEecharts%E4%B8%BB%E9%A2%98/</link>
+        <link>https://cblogx.github.io/post/echarts%E7%B3%BB%E5%88%972%E9%85%8D%E7%BD%AEecharts%E4%B8%BB%E9%A2%98/</link>
         <pubDate>Fri, 15 Apr 2022 18:56:42 +0800</pubDate>
         
-        <guid>https://cblogx.github.io/vue/echarts%E7%B3%BB%E5%88%972%E9%85%8D%E7%BD%AEecharts%E4%B8%BB%E9%A2%98/</guid>
+        <guid>https://cblogx.github.io/post/echarts%E7%B3%BB%E5%88%972%E9%85%8D%E7%BD%AEecharts%E4%B8%BB%E9%A2%98/</guid>
         <description>&lt;h1 id=&#34;echarts-配置主题&#34;&gt;echarts 配置主题&lt;/h1&gt;
 &lt;h2 id=&#34;配置样式&#34;&gt;配置样式&lt;/h2&gt;
 &lt;blockquote&gt;

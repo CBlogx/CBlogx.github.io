@@ -8,10 +8,10 @@
         <language>en-us</language>
         <lastBuildDate>Fri, 15 Apr 2022 18:56:42 +0800</lastBuildDate><atom:link href="https://cblogx.github.io/categories/echarts/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Echarts系列（2）配置Echarts主题</title>
-        <link>https://cblogx.github.io/vue/echarts%E7%B3%BB%E5%88%972%E9%85%8D%E7%BD%AEecharts%E4%B8%BB%E9%A2%98/</link>
+        <link>https://cblogx.github.io/post/echarts%E7%B3%BB%E5%88%972%E9%85%8D%E7%BD%AEecharts%E4%B8%BB%E9%A2%98/</link>
         <pubDate>Fri, 15 Apr 2022 18:56:42 +0800</pubDate>
         
-        <guid>https://cblogx.github.io/vue/echarts%E7%B3%BB%E5%88%972%E9%85%8D%E7%BD%AEecharts%E4%B8%BB%E9%A2%98/</guid>
+        <guid>https://cblogx.github.io/post/echarts%E7%B3%BB%E5%88%972%E9%85%8D%E7%BD%AEecharts%E4%B8%BB%E9%A2%98/</guid>
         <description>&lt;h1 id=&#34;echarts-配置主题&#34;&gt;echarts 配置主题&lt;/h1&gt;
 &lt;h2 id=&#34;配置样式&#34;&gt;配置样式&lt;/h2&gt;
 &lt;blockquote&gt;

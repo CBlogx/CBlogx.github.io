@@ -31,14 +31,14 @@ hasCJKLanguage: true
 
 permalinks:
   # slug 为文章关键字，未定义的情况下使用title，即文章标题
-  vue: /vue/:slug/
+  post: /post/:slug/
   page: /:slug/
 
 # 站点全局设置
 params:
   # 在首页和归档页面输出来自指定section的文章
   mainSections:
-    - vue
+    - post
   # 特色图片使用的字段，默认为image
   featuredImageField: image
   # rss输出文章完整内容
@@ -63,7 +63,7 @@ params:
     # 头像底部的Emoji
     emoji: 💙
     # 站点介绍
-    subtitle: 小程同学颜值高
+    subtitle: 待到春暖花开，你我共赴远方
     # 博主头像
     avatar:
       # 是否显示
@@ -239,12 +239,12 @@ menu:
         params: { icon: home-icon, newTab: true },
       },
       {
-        identifier: vue,
-        name: "vue",
-        url: /vue,
+        identifier: post,
+        name: "All post",
+        url: /post,
         weight: 100,
         # icon默认在assets/icons下的svg
-        params: { icon: vue-icon, newTab: true },
+        params: { icon: post-icon, newTab: true },
       },
     ]
   # 配置左侧图标信息
