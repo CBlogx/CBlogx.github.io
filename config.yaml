@@ -63,7 +63,7 @@ params:
     # 头像底部的Emoji
     emoji: 💙
     # 站点介绍
-    subtitle: 待到春暖花开，你我共赴远方
+    subtitle: 你的向往是我未曾到达的远方
     # 博主头像
     avatar:
       # 是否显示

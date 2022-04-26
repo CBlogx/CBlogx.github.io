@@ -1,0 +1,9 @@
+{{ if .Params.Saying }}
+    <section class="article-saying">
+        {{ range $key,$val := .Params }}
+        {{ if eq (substr $key 0 6) ("saying")}}
+        <p>{{ $val }}</p>
+        {{ end }}
+        {{ end }}
+    </section>
+{{ end }}

@@ -41,3 +41,19 @@ body {
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
+.article-saying{
+  font-family: "Lucida Calligraphy", cursive, serif, sans-serif;
+  font-style: italic;
+  display:inline !important;
+  color:white !important;
+  text-align: center;
+  display:flex;
+  p{
+    display: block;
+    width:100%;
+    font-size: 12px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
