@@ -44,7 +44,6 @@ body {
 
 /* 文章底部saying */
 .article-saying {
-  font-family: "Lucida Calligraphy", cursive, serif, sans-serif;
   font-style: italic;
   display: inline !important;
   color: var(--footer-saying-color) !important;
@@ -57,12 +56,16 @@ body {
     margin-left: auto !important;
     margin-right: auto !important;
   }
+  .en{
+    font-family: "alagard";
+  }
+  .zh{
+    font-size: 16px;
+    font-family: "STXinwei";
+  }
 }
 
 div.chroma {
-  // background: white !important;
-  // max-height: 400px;
-  // overflow: scroll;
   border-radius: 10px;
   padding-left: 10px;
   &::before {

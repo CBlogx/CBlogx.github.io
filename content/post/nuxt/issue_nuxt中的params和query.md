@@ -5,8 +5,8 @@ draft: false
 tags: ["nuxt", "vue"]
 categories: ["nuxt", "vue"]
 description: "在nuxt中使用params导致局部状态变化引起全局状态更新"
+saying-zh: "今天真是好日子"
 saying-en: "It is a good day"
-saying: "今天真是好日子"
 ---
 
 ## 序言
