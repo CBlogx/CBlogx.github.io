@@ -42,18 +42,44 @@ body {
   background: transparent;
 }
 
-.article-saying{
+/* 文章底部saying */
+.article-saying {
   font-family: "Lucida Calligraphy", cursive, serif, sans-serif;
   font-style: italic;
-  display:inline !important;
-  color:white !important;
+  display: inline !important;
+  color: var(--footer-saying-color) !important;
   text-align: center;
-  display:flex;
-  p{
+  display: flex;
+  p {
     display: block;
-    width:100%;
+    width: 100%;
     font-size: 12px;
     margin-left: auto !important;
     margin-right: auto !important;
+  }
+}
+
+div.chroma {
+  // background: white !important;
+  // max-height: 400px;
+  // overflow: scroll;
+  border-radius: 10px;
+  padding-left: 10px;
+  &::before {
+    content: " ";
+    position: sticky;
+    display: inline-block;
+    margin-left: 3.5px;
+    background: #ff5f56;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f;
+    -webkit-box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f;
+  }
+  &::after {
+    content: " ";
+    display: block;
+    height: 12px;
   }
 }

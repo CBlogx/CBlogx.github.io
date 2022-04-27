@@ -5,6 +5,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
 *   Global style
 */
 :root {
+  --footer-saying-color: rgb(34, 34, 34);
   --main-top-padding: 35px;
 
   @include respond(xl) {
@@ -24,6 +25,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
   --scrollbar-track: var(--body-background);
 
   &[data-scheme="dark"] {
+    --footer-saying-color: rgb(240, 240, 240);
     --body-background: #303030;
     --accent-color: rgba(255, 255, 255, 0.7);
     --accent-color-darker: #bdc3c7;

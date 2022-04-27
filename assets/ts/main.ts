@@ -65,7 +65,6 @@ let Stack = {
         const highlights = document.querySelectorAll('.article-content div.highlight');
         const copyText = `Copy`,
             copiedText = `Copied!`;
-
         highlights.forEach(highlight => {
             const copyButton = document.createElement('button');
             copyButton.innerHTML = copyText;
