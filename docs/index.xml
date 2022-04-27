@@ -6,7 +6,1547 @@
         <description>Recent content on Cheng の webstie</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Mon, 25 Apr 2022 19:37:15 +0800</lastBuildDate><atom:link href="https://cblogx.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 27 Apr 2022 23:20:46 +0800</lastBuildDate><atom:link href="https://cblogx.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Git学习笔记</title>
+        <link>https://cblogx.github.io/post/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Wed, 27 Apr 2022 23:20:46 +0800</pubDate>
+        
+        <guid>https://cblogx.github.io/post/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Git基于C语言开发&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;git学习手册&#34;&gt;Git学习手册&lt;/h1&gt;
+&lt;h2 id=&#34;集中式vs分布式&#34;&gt;&lt;strong&gt;集中式VS分布式&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&#34;集中式版本控制系统&#34;&gt;集中式版本控制系统&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;版本库集中存放于中央服务器，用时取，用完再推送到中央服务器&lt;/li&gt;
+&lt;li&gt;工作需联网/处于同一局域网内&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;分布式版本控制系统&#34;&gt;分布式版本控制系统&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;每台电脑中都有完整的版本库，协作时只需要将文件推送给其它用户即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;git的安装&#34;&gt;&lt;strong&gt;Git的安装&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&#34;linux系统&#34;&gt;Linux系统&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-01.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;macos&#34;&gt;MacOS&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-02.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;windows&#34;&gt;Windows&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;从官网直接下载安装即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;设置参数&#34;&gt;设置参数&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;最后输入以下信息确定用户信息
+git config &amp;ndash;global user.name &amp;ldquo;Your Name&amp;rdquo;
+git config &amp;ndash;global user. email   &amp;ldquo;&lt;a href=&#34;mailto:Email@example.com&#34;&gt;Email@example.com&lt;/a&gt;&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：git config命令的&amp;ndash;global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库制定不同的用户名和Email地址&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;说明&#34;&gt;说明&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;对于老版本的Git及其他所有的版本控制系统只能跟踪文本文件的改动，比如TXT、网页、程序代码等。而图片、视频这些二进制文件虽然能由版本控制系统管理，但无法跟踪文件的变化，word格式是二进制格式，无法跟踪word文件变化。使用版本控制系统时，要以纯文本的方式编写文件&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;git的使用&#34;&gt;&lt;strong&gt;Git的使用&lt;/strong&gt;&lt;/h2&gt;
+&lt;h3 id=&#34;git命令&#34;&gt;Git命令&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git init 创建Git仓库&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;通过git init命令可以把当前目录变成Git可以管理的仓库&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git add &lt;!-- raw HTML omitted --&gt; 添加文件到仓库&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;例如：执行git add readme.txt&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git commit -m &lt;!-- raw HTML omitted --&gt; 把文件提交到仓库&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;例如：执行git commit -m &amp;ldquo;wrote a readme file&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;(-m 后面输入的是本次提交的说明)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Git添加文件需要add，commit两步，commit一次可以提交很多文件，add可以多次添加不同的文件&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;&lt;strong&gt;git status 查看仓库当前的状态&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-03.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;通过结果可知，readme.txt被修改&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;&lt;strong&gt;git diff 查看仓库修改的内容&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-04.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;​			通过输出可以知道我们在第一行添加了一个distributed单词&lt;/p&gt;
+&lt;p&gt;​			使用&lt;strong&gt;git diff HEAD &amp;ndash; readme.txt&lt;/strong&gt; 查看工作区和版本库里面最新版本的区别&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-05.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;&lt;strong&gt;git log 查看仓库修改的历史记录&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-06.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;使用 “&amp;ndash;pretty=oneline” 可以简略查看输出信息 （由commit id + message 组成）HEAD表示当前版本&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-07.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git reset 版本回退与前进&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;HEAD^：上一个版本，HEAD^^：上上一个版本，HEAD^100：上100个版本&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-08.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;​		使用commit id恢复到最新版本，git会自动寻找对应版本&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-09.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;8&#34;&gt;
+&lt;li&gt;&lt;strong&gt;git reset HEAD &lt;!-- raw HTML omitted --&gt; 撤销暂存区的修改&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;git reflog 记录每一次命令&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-10.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;10&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git checkout &amp;ndash; file 撤销工作区的修改&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;file自修改后还没有被放到暂存区，撤销修改就回到和版本库一模一样的状态&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;file以及添加到暂存区后，又做了修改，撤销修改就回到添加到暂存区后的状态&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git rm &lt;!-- raw HTML omitted --&gt; 从版本库中删除文件&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git remote add origin &lt;a href=&#34;https://github.com/xxx/xxx.git&#34;&gt;https://github.com/xxx/xxx.git&lt;/a&gt; 本地仓库与远程仓库关联&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git push -u origin master 将本地仓库所有内容推送到远程仓库&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git remote rm &lt;!-- raw HTML omitted --&gt; 删除远程仓库&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git clone &lt;!-- raw HTML omitted --&gt;克隆远程仓库&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git branch 查看分支&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git branch &lt;!-- raw HTML omitted --&gt; 创建分支&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git checkout &lt;!-- raw HTML omitted --&gt; / git switch &lt;!-- raw HTML omitted --&gt; 切换分支&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git checkout -b &lt;!-- raw HTML omitted --&gt; / git switch -c &lt;!-- raw HTML omitted --&gt; 创建并切换分支&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git checkout -b &lt;!-- raw HTML omitted --&gt; origin / &lt;!-- raw HTML omitted --&gt; 创建远程分支到本地&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git merge &lt;!-- raw HTML omitted --&gt; 合并某分支到当前分支&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git branch -d &lt;!-- raw HTML omitted --&gt; 删除分支&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git remote 查看远程库的信息&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git remote
+origin
+    
+$ git remote -v &lt;span class=&#34;c1&#34;&gt;#查看详细的信息&lt;/span&gt;
+origin  https://github.com/CBlogx/learnGit.git &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;fetch&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+origin  https://github.com/CBlogx/learnGit.git &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;push&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;#如果没有推送权限就看不到push&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git push origin &lt;!-- raw HTML omitted --&gt;推送分支&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$git&lt;/span&gt; push origin master &lt;span class=&#34;c1&#34;&gt;#推送到远程对应的master分支&lt;/span&gt;
+    
+&lt;span class=&#34;nv&#34;&gt;$git&lt;/span&gt; push origin dev &lt;span class=&#34;c1&#34;&gt;#推送到其它分支&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;master分支是主分支，因此要时刻与远程同步&lt;/p&gt;
+&lt;p&gt;dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步&lt;/p&gt;
+&lt;p&gt;bug分支用于本地修复，不必同步&lt;/p&gt;
+&lt;p&gt;feature分支是否推到远程，取决于团队的开发&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git pull 抓取当前分支对应远程分支的最新的提交&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git branch &amp;ndash;set-upstream-to=origin/&lt;!-- raw HTML omitted --&gt; &lt;!-- raw HTML omitted --&gt; 本地分支与远程分支进行链接&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;git add -f &lt;!-- raw HTML omitted --&gt; 强制添加该文件到Git&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;远程仓库&#34;&gt;远程仓库&lt;/h3&gt;
+&lt;h4 id=&#34;关联远程仓库&#34;&gt;关联远程仓库&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;创建SSH Key，用户主目录下得到的id_rsa 为私钥，id_rsa.pub为公钥&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;ssh-keygen -t rsa -C &lt;span class=&#34;s2&#34;&gt;&amp;#34;youremail@example.com&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;GitHub中的SSH Key添加公钥&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;创建新仓库&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;将新仓库与本地仓库进行关联，并给定一个名字，如：origin&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git remote add origin https://github.com/CBlogx/learnGit.git
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;将本地仓库的所有内容推送到远程库中&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git push -u origin master
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;由于远程库是空的，第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送到远程新的master分支，还会把本地的master分支和远程的master分支关联起来，以后推送或者拉取时就可以简化命令如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git push origin master
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;ssh警告&#34;&gt;SSH警告&lt;/h4&gt;
+&lt;p&gt;第一次使用Git的clone或者push命令连接GitHub时，会得到下列警告&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;The authenticity of host &amp;#39;github.com (xx.xx.xx.xx)&amp;#39; can&amp;#39;t be established.
+RSA key fingerprint is xx.xx.xx.xx.xx.
+Are you sure you want to continue connecting (yes/no)?
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这是因为Git使用SSH连接，而SSH连接在第一次验证GitHub服务器的Key时，需要你确认GitHub的Key的指纹信息是否真的来自GitHub的服务器，输入yes即可。Git会给出一个警告，告诉你已经把GitHub的Key添加到本机的一个信任列表里了：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;Warning: Permanently added &amp;#39;github.com&amp;#39; (RSA) to the list of known hosts.
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;删除远程库&#34;&gt;删除远程库&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;删除远程库前使用 &lt;code&gt;git remote -v&lt;/code&gt; 查看远程库信息&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git remote -v
+origin  https://github.com/CBlogx/learnGit.git &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;fetch&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+origin  https://github.com/CBlogx/learnGit.git &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;push&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;根据名字使用 &lt;code&gt;git remote rm xxx&lt;/code&gt; 删除，比如删除origin&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;git remote rm origin
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这里“删除”只是解除了本地和远程的绑定关系，并非物理上删除了远程仓库。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;克隆远程库&#34;&gt;克隆远程库&lt;/h4&gt;
+&lt;p&gt;使用 &lt;code&gt;git clone &amp;lt;Repo url&amp;gt;&lt;/code&gt; 克隆远程仓库&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git clone git@github.com:CBlogx/gitskills.git
+Cloning into &lt;span class=&#34;s1&#34;&gt;&amp;#39;gitskills&amp;#39;&lt;/span&gt;...
+remote: Enumerating objects: 3, &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;.
+remote: Counting objects: 100% &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;3/3&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;.
+remote: Total &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;delta 0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, reused &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;delta 0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, pack-reused &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+Receiving objects: 100% &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;3/3&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git clone https://github.com/CBlogx/gitskills.git
+Cloning into &lt;span class=&#34;s1&#34;&gt;&amp;#39;gitskills&amp;#39;&lt;/span&gt;...
+remote: Enumerating objects: 3, &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;.
+remote: Counting objects: 100% &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;3/3&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;.
+remote: Total &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;delta 0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, reused &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;delta 0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, pack-reused &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+Unpacking objects: 100% &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;3/3&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, &lt;span class=&#34;m&#34;&gt;590&lt;/span&gt; bytes &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; 84.00 KiB/s, &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Git支持多种协议，其中ssh协议最快，默认的git://使用ssh，也可以使用https等其它协议，但是https除了速				度慢以外，最大的麻烦就是每次推送都必须输入口令。&lt;/p&gt;
+&lt;h3 id=&#34;分支管理&#34;&gt;分支管理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;master分支是一条线，Git用master指向最新的提交，再用HEAD指向master，就能确定当前的分支，以及当前分支的提交点&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-11.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;创建与合并分支&#34;&gt;创建与合并分支&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;创建dev分支并切换到dev分支&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git checkout -b dev
+Switched to a new branch &lt;span class=&#34;s1&#34;&gt;&amp;#39;dev&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;git checkout&lt;/code&gt; 命令加上 &lt;code&gt;-b&lt;/code&gt; 参数表示创建并切换，相当于一下两条命令&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$git&lt;/span&gt; branch dev &lt;span class=&#34;c1&#34;&gt;#创建分支&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;$git&lt;/span&gt; checkout dev &lt;span class=&#34;c1&#34;&gt;#切换分支&lt;/span&gt;
+Switched to branch &lt;span class=&#34;s1&#34;&gt;&amp;#39;dev&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-12.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;code&gt;git branch&lt;/code&gt; 命令查看当前分支&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git branch
+* dev &lt;span class=&#34;c1&#34;&gt;#当前分支&lt;/span&gt;
+  master
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;添加并提交到dev分支&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git add README.md
+$ git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;branch test&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dev c6af4a6&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; branch &lt;span class=&#34;nb&#34;&gt;test&lt;/span&gt;
+ &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; file changed, &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; insertions&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;+&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; deletion&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;-&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-13.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;dev分支任务完成，切换回master无法看到修改后README.md&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git checkout master
+Switched to branch &lt;span class=&#34;s1&#34;&gt;&amp;#39;master&amp;#39;&lt;/span&gt;
+Your branch is up to date with &lt;span class=&#34;s1&#34;&gt;&amp;#39;origin/master&amp;#39;&lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将dev分支的工作成果合并到master分支上&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git merge dev
+Updating 4868722..c6af4a6
+Fast-forward
+ README.md &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt; ++-
+ &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; file changed, &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; insertions&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;+&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; deletion&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;-&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;注意Fast-forward信息，Git告诉我们，这次合并是“快进模式”，也就是直接把master指向dev的当前提交，所以合并速度非常快&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-14.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;成功合并后，删除dev分支&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git branch -d dev
+Deleted branch dev &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;was c6af4a6&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;switch&lt;/p&gt;
+&lt;p&gt;由于&lt;code&gt;git checkout &amp;lt;branch&amp;gt;&lt;/code&gt; 与 &lt;code&gt;git checkout -- &amp;lt;file&amp;gt;&lt;/code&gt;的命令过于相似，容易混淆。新版本的Git提供了 &lt;code&gt;git switch&lt;/code&gt; 命令来切换分支&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;创建并切换到新的dev分支：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git switch -c dev
+Switched to a new branch &lt;span class=&#34;s1&#34;&gt;&amp;#39;dev&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;直接切换到已有的master分支：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git switch master
+Switched to branch &lt;span class=&#34;s1&#34;&gt;&amp;#39;master&amp;#39;&lt;/span&gt;
+M       README.md
+Your branch is ahead of &lt;span class=&#34;s1&#34;&gt;&amp;#39;origin/master&amp;#39;&lt;/span&gt; by &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; commit.
+  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use &lt;span class=&#34;s2&#34;&gt;&amp;#34;git push&amp;#34;&lt;/span&gt; to publish your &lt;span class=&#34;nb&#34;&gt;local&lt;/span&gt; commits&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;解决冲突&#34;&gt;解决冲突&lt;/h4&gt;
+&lt;h5 id=&#34;演示&#34;&gt;演示&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;新建分支feature1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改readme.txt在feature1上进行提交&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git add readme.txt
+   
+$ git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;AND simple&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;feature1 14096d0&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; AND simple
+ &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; file changed, &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; insertion&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;+&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; deletion&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;-&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;切换到master分支&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git switch master
+Switched to branch &lt;span class=&#34;s1&#34;&gt;&amp;#39;master&amp;#39;&lt;/span&gt;
+Your branch is ahead of &lt;span class=&#34;s1&#34;&gt;&amp;#39;origin/master&amp;#39;&lt;/span&gt; by &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; commit.
+  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use &lt;span class=&#34;s2&#34;&gt;&amp;#34;git push&amp;#34;&lt;/span&gt; to publish your &lt;span class=&#34;nb&#34;&gt;local&lt;/span&gt; commits&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修改readme.txt并提交&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$git&lt;/span&gt; add readme.txt
+$ git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;amp; simple&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;master ac546fb&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt; simple
+ &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; file changed, &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; insertion&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;+&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+ create mode &lt;span class=&#34;m&#34;&gt;100644&lt;/span&gt; readme.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将master与feature1进行合并&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git merge featurel &lt;span class=&#34;c1&#34;&gt;#此时出现了冲突&lt;/span&gt;
+CONFLICT &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;add/add&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;: Merge conflict in readme.txt
+Auto-merging readme.txt
+Automatic merge failed&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; fix conflicts and &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt; commit the result.
+   
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;查看冲突原因&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git status
+On branch master
+Your branch is ahead of &lt;span class=&#34;s1&#34;&gt;&amp;#39;origin/master&amp;#39;&lt;/span&gt; by &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; commits.
+  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use &lt;span class=&#34;s2&#34;&gt;&amp;#34;git push&amp;#34;&lt;/span&gt; to publish your &lt;span class=&#34;nb&#34;&gt;local&lt;/span&gt; commits&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+   
+You have unmerged paths.
+  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;fix conflicts and run &lt;span class=&#34;s2&#34;&gt;&amp;#34;git commit&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use &lt;span class=&#34;s2&#34;&gt;&amp;#34;git merge --abort&amp;#34;&lt;/span&gt; to abort the merge&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+   
+Unmerged paths:
+  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use &lt;span class=&#34;s2&#34;&gt;&amp;#34;git add &amp;lt;file&amp;gt;...&amp;#34;&lt;/span&gt; to mark resolution&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+        both added:      readme.txt
+   
+no changes added to commit &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use &lt;span class=&#34;s2&#34;&gt;&amp;#34;git add&amp;#34;&lt;/span&gt; and/or &lt;span class=&#34;s2&#34;&gt;&amp;#34;git commit -a&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;打开readme.txt&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-tcl&#34; data-lang=&#34;tcl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;HEAD&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Creating&lt;/span&gt; a new branch is quick &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; simple
+&lt;span class=&#34;o&#34;&gt;======&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;=&lt;/span&gt;
+&lt;span class=&#34;nv&#34;&gt;Creating&lt;/span&gt; a new branch is quick AND simple
+&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;featurel&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Git用&lt;code&gt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&lt;/code&gt;、&lt;code&gt;=======&lt;/code&gt;、&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&lt;/code&gt; 标记出不同分支的内容&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;手动修改后保存并再次提交&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git add readme.txt
+$ git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;conflict fixed&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;master 551be4a&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; conflict fixed
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;9&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;用带参数的git log 查看分支合并的情况&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git log --graph --pretty&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;oneline --abbrev-commit
+*   551be4a &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;HEAD -&amp;gt; master&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; conflict fixed
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; * 9a4daf6 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;featurel&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; AND simple
+* &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; ac546fb &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt; simple
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;/
+* c6af4a6 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; branch &lt;span class=&#34;nb&#34;&gt;test&lt;/span&gt;
+* &lt;span class=&#34;m&#34;&gt;4868722&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;origin/master&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; testNewConnect
+* 4abaec1 remove readme
+* 362f09b understand how stage works
+* 43631c6 append GPL
+* 648861c add distributed
+* a982fbb wrote
+   
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;删除feature1分支&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用git log &amp;ndash;graph 可以查看分支合并图&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;分支管理策略&#34;&gt;分支管理策略&lt;/h4&gt;
+&lt;h5 id=&#34;merge的--no-ff方式&#34;&gt;merge的&amp;ndash;no-ff方式&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;创建并切换dev分支&lt;/li&gt;
+&lt;li&gt;修改readme.txt并提交&lt;/li&gt;
+&lt;li&gt;切换回master分支&lt;/li&gt;
+&lt;li&gt;使用&amp;ndash;no-ff合并分支，&amp;ndash;no-ff表示禁用fast forward模式&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git merge --no-ff -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;merge with no-ff&amp;#34;&lt;/span&gt; dev 
+&lt;span class=&#34;c1&#34;&gt;#因为本次合并要创建一个新的commit，所以加上-m参数，把commit描述写进去&lt;/span&gt;
+Merge made by the &lt;span class=&#34;s1&#34;&gt;&amp;#39;recursive&amp;#39;&lt;/span&gt; strategy.
+ readme.txt &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; +
+ &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; file changed, &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; insertion&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;+&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;使用git log 查看分支历史&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git log --graph --pretty&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;oneline --abbrev-commit
+*   622131f &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;HEAD -&amp;gt; master&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; merge with no-ff
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; * 56aa0b6 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;dev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; add merge
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;/
+*   551be4a conflict fixed
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;可以看到，不使用Fast forward模式，merge后就像下图。合并时使用&amp;ndash;no-ff就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-15.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h4 id=&#34;bug分支&#34;&gt;Bug分支&lt;/h4&gt;
+&lt;h5 id=&#34;演示-1&#34;&gt;演示&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;假定此时正在dev分支工作，但bug出现在master需要在master分支上修复，此时dev现场如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git status
+On branch dev
+Changes to be committed:
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use &lt;span class=&#34;s2&#34;&gt;&amp;#34;git reset HEAD &amp;lt;file&amp;gt;...&amp;#34;&lt;/span&gt; to unstage&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+
+	new file:   hello.py
+
+Changes not staged &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; commit:
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use &lt;span class=&#34;s2&#34;&gt;&amp;#34;git add &amp;lt;file&amp;gt;...&amp;#34;&lt;/span&gt; to update what will be committed&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use &lt;span class=&#34;s2&#34;&gt;&amp;#34;git checkout -- &amp;lt;file&amp;gt;...&amp;#34;&lt;/span&gt; to discard changes in working directory&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+
+	modified:   readme.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;保存dev工作现场&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git stash
+Saved working directory and index state WIP on dev: f52c633 add merge
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;切换回master分支并从master创建临时分支&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git checkout master
+Switched to branch &lt;span class=&#34;s1&#34;&gt;&amp;#39;master&amp;#39;&lt;/span&gt;
+Your branch is ahead of &lt;span class=&#34;s1&#34;&gt;&amp;#39;origin/master&amp;#39;&lt;/span&gt; by &lt;span class=&#34;m&#34;&gt;6&lt;/span&gt; commits.
+  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use &lt;span class=&#34;s2&#34;&gt;&amp;#34;git push&amp;#34;&lt;/span&gt; to publish your &lt;span class=&#34;nb&#34;&gt;local&lt;/span&gt; commits&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+     
+$ git checkout -b issue-101 &lt;span class=&#34;c1&#34;&gt;#创建issue-101临时分支&lt;/span&gt;
+Switched to a new branch &lt;span class=&#34;s1&#34;&gt;&amp;#39;issue-101&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;bug出现在readme.txt，修复bug并提交，&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git add readme.txt
+$ git commit -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;fix bug 101&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;issue-101 f940c69&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; “fix bug &lt;span class=&#34;m&#34;&gt;101&lt;/span&gt;
+ &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; file changed, &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; insertion&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;+&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;修复完成后，切换到master分支，并完成合并，最后删除issue-101分支&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git switch master
+Switched to branch &lt;span class=&#34;s1&#34;&gt;&amp;#39;master&amp;#39;&lt;/span&gt;
+Your branch is ahead of &lt;span class=&#34;s1&#34;&gt;&amp;#39;origin/master&amp;#39;&lt;/span&gt; by &lt;span class=&#34;m&#34;&gt;6&lt;/span&gt; commits.
+  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use &lt;span class=&#34;s2&#34;&gt;&amp;#34;git push&amp;#34;&lt;/span&gt; to publish your &lt;span class=&#34;nb&#34;&gt;local&lt;/span&gt; commits&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+   
+$ git merge --no-ff -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;merged bug fix 101&amp;#34;&lt;/span&gt; issue-101
+Merge made by the &lt;span class=&#34;s1&#34;&gt;&amp;#39;recursive&amp;#39;&lt;/span&gt; strategy.
+ readme.txt &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; +
+ &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; file changed, &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; insertion&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;+&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;回到dev分支，查看工作状态&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git switch dev
+Switched to branch &lt;span class=&#34;s1&#34;&gt;&amp;#39;dev&amp;#39;&lt;/span&gt;
+   
+$ git status &lt;span class=&#34;c1&#34;&gt;#???工作现场不见了&lt;/span&gt;
+On branch dev
+nothing to commit, working tree clean
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用&lt;code&gt;git stash list&lt;/code&gt;命令查看&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git stash list
+stash@&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;: WIP on dev: f52c633 add merge &lt;span class=&#34;c1&#34;&gt;#Git把stash内容存在stash@{0}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;恢复工作现场&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;code&gt;git stash apply&lt;/code&gt;恢复，但是stash内容不会自动删除，需要使用 &lt;code&gt;git stash drop&lt;/code&gt; 删除&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;code&gt;git stash pop&lt;/code&gt; 恢复的同时删除stash&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git stash pop
+On branch dev
+Changes to be committed:
+  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use &lt;span class=&#34;s2&#34;&gt;&amp;#34;git reset HEAD &amp;lt;file&amp;gt;...&amp;#34;&lt;/span&gt; to unstage&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+      
+	new file:   hello.py
+      
+Changes not staged &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; commit:
+  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use &lt;span class=&#34;s2&#34;&gt;&amp;#34;git add &amp;lt;file&amp;gt;...&amp;#34;&lt;/span&gt; to update what will be committed&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;use &lt;span class=&#34;s2&#34;&gt;&amp;#34;git checkout -- &amp;lt;file&amp;gt;...&amp;#34;&lt;/span&gt; to discard changes in working directory&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+      
+	modified:   readme.txt
+      
+Dropped refs/stash@&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;5d677e2ee266f39ea296182fb2354265b91b3b2a&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;可以多次stash，恢复的时候，使用 &lt;code&gt;git stash list&lt;/code&gt; 查看，然后恢复到指定的stash&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;nv&#34;&gt;$git&lt;/span&gt; stash apply stash@&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h5 id=&#34;cherry-pick&#34;&gt;cherry-pick&lt;/h5&gt;
+&lt;blockquote&gt;
+&lt;p&gt;因为dev是master的分支，因此dev上也存在相同的bug，我们需要把f940c69 fix bug 101 这个提交所作的修改“复制”到dev分支即可。为了方便操作，Git提供了一个cherry-pick命令&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git switch dev
+Switched to branch &lt;span class=&#34;s1&#34;&gt;&amp;#39;dev&amp;#39;&lt;/span&gt;
+
+$ git cherry-pick f940c69
+&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;dev 43397d6&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; “fix bug &lt;span class=&#34;m&#34;&gt;101&lt;/span&gt;
+ Date: Sun Sep &lt;span class=&#34;m&#34;&gt;19&lt;/span&gt; 15:24:10 &lt;span class=&#34;m&#34;&gt;2021&lt;/span&gt; +0800
+ &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; file changed, &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; insertion&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;+&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Git自动给dev分支做了一次提交，不过需要注意的是如果直接在dev分支上修复bug再在master分支上使用cherry-pick时，我们也需要使用&lt;code&gt;git stash&lt;/code&gt;保存dev的工作现场之后才能切换分支&lt;/p&gt;
+&lt;h4 id=&#34;未合并的分支&#34;&gt;未合并的分支&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我们创建一个新的feature分支，在该分支中提交了新的工作，然后回到dev分支，此时不想要feature中的内容，我们想要销毁该分支&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git branch -d feature
+error: The branch &lt;span class=&#34;s1&#34;&gt;&amp;#39;feature&amp;#39;&lt;/span&gt; is not fully merged.
+If you are sure you want to delete it, run &lt;span class=&#34;s1&#34;&gt;&amp;#39;git branch -D feature&amp;#39;&lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用&lt;code&gt;git branch -d feature&lt;/code&gt;，无法销毁，那么我们就要使用&lt;code&gt;git branch -D feature&lt;/code&gt;强行销毁&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git branch -D feature
+Deleted branch feature &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;was e72ce22&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;.
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/blockquote&gt;
+&lt;h4 id=&#34;多人协作模式&#34;&gt;多人协作模式&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;试图使用 &lt;code&gt;git push origin &amp;lt;branch-name&amp;gt;&lt;/code&gt; 推送自己的修改&lt;/li&gt;
+&lt;li&gt;如果推送失败，则因为远程分支比你的本地更新，需要先用 &lt;code&gt;git pull&lt;/code&gt; 进行合并&lt;/li&gt;
+&lt;li&gt;如果合并有冲突，则解决冲突，并在本地提交&lt;/li&gt;
+&lt;li&gt;没有冲突/解决冲突后，再用 &lt;code&gt;git push origin &amp;lt;branch-name&amp;gt;&lt;/code&gt;推送&lt;/li&gt;
+&lt;li&gt;如果 &lt;code&gt;git pull&lt;/code&gt; 提示 &lt;code&gt;no tracking information&lt;/code&gt; 则说明本地分支和远程分支链接关系没有创建，用命令 &lt;code&gt;git branch --set-upstream-to &amp;lt;branch-name&amp;gt; origin/&amp;lt;branch-name&amp;gt;&lt;/code&gt; 进行链接&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;rebase&#34;&gt;Rebase&lt;/h4&gt;
+&lt;p&gt;多次合并再push后，使用 &lt;code&gt;git log &lt;/code&gt; 查看分支合并情况时，情况如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git log --graph --pretty&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;oneline --abbrev-commit
+* d1be385 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;HEAD -&amp;gt; master, origin/master&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; init hello
+*   e5e69f1 Merge branch &lt;span class=&#34;s1&#34;&gt;&amp;#39;dev&amp;#39;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt; 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; *   57c53ab &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;origin/dev, dev&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; fix env conflict
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\ &lt;/span&gt; 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; * 7a5e5dd add env
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; * &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; 7bd91f1 add new env
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;/  
+* &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;   12a631b merged bug fix &lt;span class=&#34;m&#34;&gt;101&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\ \ &lt;/span&gt; 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; * &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; 4c805e2 fix bug &lt;span class=&#34;m&#34;&gt;101&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;/ /  
+* &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;   e1e9c68 merge with no-ff
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\ \ &lt;/span&gt; 
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;/  
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; * f52c633 add merge
+&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;/  
+*   cf810e4 conflict fixed
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用&lt;code&gt;git rebase&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git rebase
+First, rewinding head to replay your work on top of it...
+Applying: add comment
+Using index info to reconstruct a base tree...
+M	hello.py
+Falling back to patching base and 3-way merge...
+Auto-merging hello.py
+Applying: add author
+Using index info to reconstruct a base tree...
+M	hello.py
+Falling back to patching base and 3-way merge...
+Auto-merging hello.py
+
+$ git log --graph --pretty&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;oneline --abbrev-commit
+* 7e61ed4 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;HEAD -&amp;gt; master&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; add author
+* 3611cfe add comment
+* f005ed4 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;origin/master&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;exit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+* d1be385 init hello
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用Rebase的特点：把分叉的提交历史“整理”成一条直线，看上去更直观，但是缺点是本地的分叉提交已经被修改过&lt;/p&gt;
+&lt;h3 id=&#34;标签管理&#34;&gt;标签管理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Git的标签可以当作版本库的快照，但其实它就是指向某个commit的指针，创建和删除标签都是瞬间完成的&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;创建标签&#34;&gt;创建标签&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;使用 &lt;code&gt;git tag &amp;lt;name&amp;gt; [commit id]&lt;/code&gt;  创建新标签&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git tag v1.0 &lt;span class=&#34;c1&#34;&gt;#创建一个新标签，默认为HEAD创建，也可以指定一个commit id&lt;/span&gt;
+
+$ git tag &lt;span class=&#34;c1&#34;&gt;#查看所有标签&lt;/span&gt;
+v1.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;给历史提交打上标签&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git log --pretty&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;oneline --abbrev-commit
+a7d7049 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;HEAD -&amp;gt; master, tag: v1.0, origin/master&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; merged bug fix &lt;span class=&#34;m&#34;&gt;101&lt;/span&gt;
+f940c69 “fix bug &lt;span class=&#34;m&#34;&gt;101&lt;/span&gt;
+622131f merge with no-ff
+56aa0b6 add merge
+551be4a conflict fixed
+ac546fb &lt;span class=&#34;p&#34;&gt;&amp;amp;&lt;/span&gt; simple
+9a4daf6 AND simple
+c6af4a6 branch &lt;span class=&#34;nb&#34;&gt;test&lt;/span&gt;
+&lt;span class=&#34;m&#34;&gt;4868722&lt;/span&gt; testNewConnect
+4abaec1 remove readme
+362f09b understand how stage works
+43631c6 append GPL
+648861c add distributed
+a982fbb wrote
+   
+$ git tag v0.9 f940c69 &lt;span class=&#34;c1&#34;&gt;#给commit id为 f940c69 的提交打标签&lt;/span&gt;
+   
+$ git tag
+v0.9
+v1.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;code&gt;git show &amp;lt;tagname&amp;gt;&lt;/code&gt; 查看标签信息&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git show v0.9
+commit f940c69803cb84afcacff84cc3917df55ff03f28 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;tag: v0.9&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+Author: CBlogx &amp;lt;CBlogx@github.com&amp;gt;
+Date:   Sun Sep &lt;span class=&#34;m&#34;&gt;19&lt;/span&gt; 15:24:10 &lt;span class=&#34;m&#34;&gt;2021&lt;/span&gt; +0800
+   
+    “fix bug &lt;span class=&#34;m&#34;&gt;101&lt;/span&gt;
+   
+diff --git a/readme.txt b/readme.txt
+index 13dbc4b..ed1e735 &lt;span class=&#34;m&#34;&gt;100644&lt;/span&gt;
+--- a/readme.txt
++++ b/readme.txt
+@@ -2,3 +2,4 @@ Creating a new branch is quick and simple
+   
+ Git is god
+   
++Git is a free software
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;创建带有说明的标签，用 &lt;code&gt;-a&lt;/code&gt; 指定标签名，&lt;code&gt;-m&lt;/code&gt; 指定说明文字&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git tag -a v0.1 -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;version 0.1 released&amp;#34;&lt;/span&gt; 622131f
+   
+$ git show v0.1
+tag v0.1 &lt;span class=&#34;c1&#34;&gt;#标签名&lt;/span&gt;
+Tagger: CBlogx &amp;lt;CBlogx@github.com&amp;gt;
+Date:   Sun Sep &lt;span class=&#34;m&#34;&gt;19&lt;/span&gt; 17:01:18 &lt;span class=&#34;m&#34;&gt;2021&lt;/span&gt; +0800
+   
+version 0.1 released &lt;span class=&#34;c1&#34;&gt;#说明信息&lt;/span&gt;
+   
+commit 622131f76462118d3528317c70bf9c50f622e6a9 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;tag: v0.1&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+Merge: 551be4a 56aa0b6
+Author: CBlogx &amp;lt;CBlogx@github.com&amp;gt;
+Date:   Sun Sep &lt;span class=&#34;m&#34;&gt;19&lt;/span&gt; 15:06:12 &lt;span class=&#34;m&#34;&gt;2021&lt;/span&gt; +0800
+   
+    merge with no-ff
+   
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;操作标签&#34;&gt;操作标签&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;删除标签 &lt;code&gt;git tag -d &amp;lt;tagname&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git tag -d v0.1
+Deleted tag &lt;span class=&#34;s1&#34;&gt;&amp;#39;v0.1&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;was b20c2b5&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#创建的标签都只存储再本地，不会自动推送到远程。所以，打错的标签可以再本地安全删除&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;推送标签 &lt;code&gt;git push origin &amp;lt;tagname&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git push origin v1.0 &lt;span class=&#34;c1&#34;&gt;#选择标签推送&lt;/span&gt;
+Total &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;delta 0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, reused &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;delta 0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, pack-reused &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+To https://github.com/CBlogx/learnGit.git
+ * &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;new tag&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;         v1.0 -&amp;gt; v1.0
+    
+$ git push origin --tags &lt;span class=&#34;c1&#34;&gt;#推送所有标签&lt;/span&gt;
+Total &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;delta 0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, reused &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;delta 0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;, pack-reused &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;
+To https://github.com/CBlogx/learnGit.git
+ * &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;new tag&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;         v0.9 -&amp;gt; v0.9
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;删除远程标签的三种方法&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;$ git tag -d v0.9 &lt;span class=&#34;c1&#34;&gt;#先删除本地标签&lt;/span&gt;
+Deleted tag &lt;span class=&#34;s1&#34;&gt;&amp;#39;v0.9&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;was f940c69&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+   
+$ git push origin :refs/tags/v0.9 &lt;span class=&#34;c1&#34;&gt;#删除远程标签(1)&lt;/span&gt;
+To https://github.com/CBlogx/learnGit.git
+ - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;deleted&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;         v0.9
+   
+$ git push origin :v1.0 &lt;span class=&#34;c1&#34;&gt;#删除远程标签(2)&lt;/span&gt;
+To https://github.com/CBlogx/learnGit.git
+ - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;deleted&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;         v1.0
+   
+$ git push origin --delete tag v1.0 &lt;span class=&#34;c1&#34;&gt;#删除远程标签(3)&lt;/span&gt;
+To https://github.com/CBlogx/learnGit.git
+ - &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;deleted&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;         v1.0
+   
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;工作区与暂存区&#34;&gt;工作区与暂存区&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;工作区的隐藏目录 .git 为Git的版本库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-16.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;版本库中最重要的是称为stage的暂存区、Git自动创建的第一个分支master以及指向master的指针HEAD&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;把文件添加进版本库，分两步执行&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;git add 把文件修改添加到暂存区&lt;/li&gt;
+&lt;li&gt;git commit 把暂存区的所有内容提交到当前分支&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;演示：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;新增一个LICENSE文本文件&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-17.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用两次git add 添加readme.txt 和 LICENSE&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-18.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;此时暂存区状态&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-19.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用git commit -m &lt;!-- raw HTML omitted --&gt; 提交后&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cblogx.github.io/images/git/gitImg-20.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;自定义git&#34;&gt;自定义Git&lt;/h3&gt;
+&lt;h4 id=&#34;忽略特殊文件&#34;&gt;忽略特殊文件&lt;/h4&gt;
+&lt;p&gt;Git中配备了.gitignore 文件用来忽略特殊的文件&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;忽略原则：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;忽略操作系统自动生成的文件，比如缩略图&lt;/li&gt;
+&lt;li&gt;忽略编译生成的中间文件、可执行文件，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如java编译产生的.class文件&lt;/li&gt;
+&lt;li&gt;忽略你自己的带有敏感信息的配置文件，比如存放口令的配置文件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;配置举例&#34;&gt;配置举例&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 排除所有.开头的隐藏文件:&lt;/span&gt;
+.*
+&lt;span class=&#34;c1&#34;&gt;# 排除所有.class文件:&lt;/span&gt;
+*.class
+
+&lt;span class=&#34;c1&#34;&gt;# 不排除.gitignore和App.class:&lt;/span&gt;
+!.gitignore
+!App.class
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>关于 nuxt 中的 params 和 query</title>
         <link>https://cblogx.github.io/post/%E5%85%B3%E4%BA%8E-nuxt-%E4%B8%AD%E7%9A%84-params-%E5%92%8C-query/</link>
         <pubDate>Mon, 25 Apr 2022 19:37:15 +0800</pubDate>

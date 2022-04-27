@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Git基于C语言开发 Git学习手册 集中式VS分布式 集中式版本控制系统 版本库集中存放于中央服务器，用时取，用完再推送到中央服务器 工作需联网/处'><title>Git学习笔记</title>
+
+<link rel='canonical' href='https://cblogx.github.io/post/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/'>
+
+<link rel="stylesheet" href="/scss/style.min.fd0b340ef0736223d52f9e19d78ab35404429659a8d9486e89df33375c1a2659.css"><meta property='og:title' content='Git学习笔记'>
+<meta property='og:description' content='Git基于C语言开发 Git学习手册 集中式VS分布式 集中式版本控制系统 版本库集中存放于中央服务器，用时取，用完再推送到中央服务器 工作需联网/处'>
+<meta property='og:url' content='https://cblogx.github.io/post/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/'>
+<meta property='og:site_name' content='Cheng の webstie'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='git' /><meta property='article:published_time' content='2022-04-27T23:20:46&#43;08:00'/><meta property='article:modified_time' content='2022-04-27T23:20:46&#43;08:00'/>
+<meta name="twitter:title" content="Git学习笔记">
+<meta name="twitter:description" content="Git基于C语言开发 Git学习手册 集中式VS分布式 集中式版本控制系统 版本库集中存放于中央服务器，用时取，用完再推送到中央服务器 工作需联网/处">
+    <link rel="shortcut icon" href="/images/favicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hud0f9858cd288fe1f888fe21021c89b8e_121090_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">💙</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cheng の webstie</a></h1>
+            <h2 class="site-description">你的向往是我未曾到达的远方</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1650038332134" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9045" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300"><defs><style type="text/css">@font-face { font-family: feedback-iconfont; src: url("//at.alicdn.com/t/font_1031158_u69w8yhxdu.woff2?t=1630033759944") format("woff2"), url("//at.alicdn.com/t/font_1031158_u69w8yhxdu.woff?t=1630033759944") format("woff"), url("//at.alicdn.com/t/font_1031158_u69w8yhxdu.ttf?t=1630033759944") format("truetype"); }
+</style></defs><path d="M855.04 815.36c0 17.92-16.64 32-38.4 32H226.56c-20.48 0-38.4-14.08-38.4-32V371.2c0-17.92 16.64-32 38.4-32h590.08c20.48 0 38.4 14.08 38.4 32v444.16z" fill="#E1E0A6" p-id="9046"></path><path d="M816.64 860.16H226.56c-28.16 0-51.2-20.48-51.2-44.8V371.2c0-24.32 23.04-44.8 51.2-44.8h590.08c28.16 0 51.2 20.48 51.2 44.8v444.16c0 24.32-23.04 44.8-51.2 44.8zM226.56 352c-14.08 0-25.6 8.96-25.6 19.2v444.16c0 10.24 11.52 19.2 25.6 19.2h590.08c14.08 0 25.6-8.96 25.6-19.2V371.2c0-10.24-11.52-19.2-25.6-19.2H226.56z" fill="#231C1C" p-id="9047"></path><path d="M917.76 449.28c0 21.76-14.08 39.68-32 39.68L520.96 328.96 156.16 488.96c-17.92 0-32-17.92-32-39.68v-56.32c0-21.76 14.08-39.68 32-39.68l364.8-184.32 364.8 184.32c17.92 0 32 17.92 32 39.68v56.32z" fill="#6FB0BE" p-id="9048"></path><path d="M885.76 501.76c-1.28 0-3.84 0-5.12-1.28L520.96 343.04 161.28 500.48c-1.28 1.28-3.84 1.28-5.12 1.28-24.32 0-44.8-23.04-44.8-52.48v-56.32c0-28.16 17.92-51.2 40.96-52.48l362.24-183.04c3.84-1.28 7.68-1.28 11.52 0l362.24 183.04c23.04 2.56 40.96 24.32 40.96 52.48v56.32c1.28 28.16-17.92 52.48-43.52 52.48zM520.96 183.04l-358.4 181.76c-1.28 1.28-3.84 1.28-5.12 1.28-10.24 0-19.2 12.8-19.2 26.88v56.32c0 14.08 7.68 25.6 16.64 26.88l362.24-158.72c3.84-1.28 6.4-1.28 10.24 0l362.24 158.72c8.96-1.28 16.64-12.8 16.64-26.88v-56.32c0-15.36-8.96-26.88-19.2-26.88-2.56 0-3.84 0-6.4-1.28L520.96 183.04z" fill="#231C1C" p-id="9049"></path><path d="M623.36 848.64H445.44V634.88c0-17.92 15.36-30.72 33.28-30.72h111.36c17.92 0 33.28 12.8 33.28 30.72v213.76z" fill="#FDE8C2" p-id="9050"></path><path d="M623.36 861.44H445.44c-7.68 0-12.8-5.12-12.8-12.8V634.88c0-24.32 19.2-43.52 46.08-43.52h111.36c25.6 0 46.08 17.92 46.08 43.52v212.48c0 7.68-5.12 14.08-12.8 14.08z m-165.12-25.6h152.32V634.88c0-11.52-10.24-17.92-20.48-17.92h-111.36c-10.24 0-20.48 5.12-20.48 17.92v200.96z" fill="#231C1C" p-id="9051"></path></svg>
+                
+                <span>home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/post' >
+                
+                
+                
+                    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1650886369944" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3585" data-spm-anchor-id="a313x.7781069.0.i1" width="500" height="500" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">@font-face { font-family: feedback-iconfont; src: url("//at.alicdn.com/t/font_1031158_u69w8yhxdu.woff2?t=1630033759944") format("woff2"), url("//at.alicdn.com/t/font_1031158_u69w8yhxdu.woff?t=1630033759944") format("woff"), url("//at.alicdn.com/t/font_1031158_u69w8yhxdu.ttf?t=1630033759944") format("truetype"); }
+</style></defs><path d="M800 192L160 424.672 567.328 832 800 192z m-107.008 107.008l-151.488 416.672-107.008-106.976 161.888-213.088-213.088 161.888-106.976-107.008 416.672-151.488z" p-id="3586" data-spm-anchor-id="a313x.7781069.0.i0" class="selected"></path></svg>
+                
+                <span>All post</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://cblogx.github.io/zh-cn/" >中文</option>
+                        
+                            <option value="https://cblogx.github.io/" selected>English</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" />
+  <rect stroke="none" x="2" y="6" width="20" height="12" rx="6" fill="black" />
+  <circle cx="8" cy="12" r="3.5" fill="white" />
+</svg>
+
+
+
+                      <!-- 更改底部主题按钮样式 -->
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect stroke="none" x="2" y="6" width="20" height="12" rx="6" fill="white" />
+  <circle cx="16" cy="12" r="3.5" fill="black" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+  <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/git/" >
+                git
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Git学习笔记</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 27, 2022</time>
+            </div>
+        
+
+        
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    13 minute read
+                </time>
+            </div>
+        
+
+        
+         
+        <div>
+            <svg t="1650248083053" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9292" width="300" height="300"><path d="M597.333333 273.664L657.664 213.333333l195.84 195.669334L793.258667 469.333333z" p-id="9293" fill="#8a8a8a"></path><path d="M745.472 203.264L281.898667 666.837333l-39.253334 157.226667 157.184-39.296L863.402667 321.194667l-117.930667-117.930667zM981.333333 321.194667l-538.88 538.88L128 938.666667l78.634667-314.453334L745.472 85.333333 981.333333 321.194667z" p-id="9294" fill="#8a8a8a"></path></svg> 
+            <time class="article-words">
+                6116 words
+            </time>
+        </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header> <section class="article-content">
+    
+    
+    <hr>
+<blockquote>
+<p>Git基于C语言开发</p>
+</blockquote>
+<hr>
+<h1 id="git学习手册">Git学习手册</h1>
+<h2 id="集中式vs分布式"><strong>集中式VS分布式</strong></h2>
+<h3 id="集中式版本控制系统">集中式版本控制系统</h3>
+<ul>
+<li>版本库集中存放于中央服务器，用时取，用完再推送到中央服务器</li>
+<li>工作需联网/处于同一局域网内</li>
+</ul>
+<h3 id="分布式版本控制系统">分布式版本控制系统</h3>
+<ul>
+<li>每台电脑中都有完整的版本库，协作时只需要将文件推送给其它用户即可</li>
+</ul>
+<h2 id="git的安装"><strong>Git的安装</strong></h2>
+<h3 id="linux系统">Linux系统</h3>
+<p><img src="/images/git/gitImg-01.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="macos">MacOS</h3>
+<p><img src="/images/git/gitImg-02.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h3 id="windows">Windows</h3>
+<ul>
+<li>从官网直接下载安装即可</li>
+</ul>
+<h3 id="设置参数">设置参数</h3>
+<ul>
+<li>
+<p>最后输入以下信息确定用户信息
+git config &ndash;global user.name &ldquo;Your Name&rdquo;
+git config &ndash;global user. email   &ldquo;<a href="mailto:Email@example.com">Email@example.com</a>&rdquo;</p>
+<p><strong>注意：git config命令的&ndash;global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库制定不同的用户名和Email地址</strong></p>
+</li>
+</ul>
+<h3 id="说明">说明</h3>
+<p><strong>对于老版本的Git及其他所有的版本控制系统只能跟踪文本文件的改动，比如TXT、网页、程序代码等。而图片、视频这些二进制文件虽然能由版本控制系统管理，但无法跟踪文件的变化，word格式是二进制格式，无法跟踪word文件变化。使用版本控制系统时，要以纯文本的方式编写文件</strong></p>
+<h2 id="git的使用"><strong>Git的使用</strong></h2>
+<h3 id="git命令">Git命令</h3>
+<ol>
+<li>
+<p><strong>git init 创建Git仓库</strong></p>
+<p>通过git init命令可以把当前目录变成Git可以管理的仓库</p>
+</li>
+<li>
+<p><strong>git add <!-- raw HTML omitted --> 添加文件到仓库</strong></p>
+<p>例如：执行git add readme.txt</p>
+</li>
+<li>
+<p><strong>git commit -m <!-- raw HTML omitted --> 把文件提交到仓库</strong></p>
+<p>例如：执行git commit -m &ldquo;wrote a readme file&rdquo;</p>
+<p>(-m 后面输入的是本次提交的说明)</p>
+</li>
+</ol>
+<p>Git添加文件需要add，commit两步，commit一次可以提交很多文件，add可以多次添加不同的文件</p>
+<ol start="4">
+<li><strong>git status 查看仓库当前的状态</strong></li>
+</ol>
+<p><img src="/images/git/gitImg-03.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>通过结果可知，readme.txt被修改</p>
+<ol start="5">
+<li><strong>git diff 查看仓库修改的内容</strong></li>
+</ol>
+<p><img src="/images/git/gitImg-04.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>​			通过输出可以知道我们在第一行添加了一个distributed单词</p>
+<p>​			使用<strong>git diff HEAD &ndash; readme.txt</strong> 查看工作区和版本库里面最新版本的区别</p>
+<p><img src="/images/git/gitImg-05.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ol start="6">
+<li><strong>git log 查看仓库修改的历史记录</strong></li>
+</ol>
+<p><img src="/images/git/gitImg-06.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>使用 “&ndash;pretty=oneline” 可以简略查看输出信息 （由commit id + message 组成）HEAD表示当前版本</p>
+<p><img src="/images/git/gitImg-07.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ol start="7">
+<li>
+<p><strong>git reset 版本回退与前进</strong></p>
+<p>HEAD^：上一个版本，HEAD^^：上上一个版本，HEAD^100：上100个版本</p>
+</li>
+</ol>
+<p><img src="/images/git/gitImg-08.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>​		使用commit id恢复到最新版本，git会自动寻找对应版本</p>
+<p><img src="/images/git/gitImg-09.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ol start="8">
+<li><strong>git reset HEAD <!-- raw HTML omitted --> 撤销暂存区的修改</strong></li>
+<li><strong>git reflog 记录每一次命令</strong></li>
+</ol>
+<p><img src="/images/git/gitImg-10.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ol start="10">
+<li>
+<p><strong>git checkout &ndash; file 撤销工作区的修改</strong></p>
+</li>
+<li>
+<p>file自修改后还没有被放到暂存区，撤销修改就回到和版本库一模一样的状态</p>
+</li>
+<li>
+<p>file以及添加到暂存区后，又做了修改，撤销修改就回到添加到暂存区后的状态</p>
+</li>
+<li>
+<p><strong>git rm <!-- raw HTML omitted --> 从版本库中删除文件</strong></p>
+</li>
+<li>
+<p><strong>git remote add origin <a href="https://github.com/xxx/xxx.git">https://github.com/xxx/xxx.git</a> 本地仓库与远程仓库关联</strong></p>
+</li>
+<li>
+<p><strong>git push -u origin master 将本地仓库所有内容推送到远程仓库</strong></p>
+</li>
+<li>
+<p><strong>git remote rm <!-- raw HTML omitted --> 删除远程仓库</strong></p>
+</li>
+<li>
+<p><strong>git clone <!-- raw HTML omitted -->克隆远程仓库</strong></p>
+</li>
+<li>
+<p><strong>git branch 查看分支</strong></p>
+</li>
+<li>
+<p><strong>git branch <!-- raw HTML omitted --> 创建分支</strong></p>
+</li>
+<li>
+<p><strong>git checkout <!-- raw HTML omitted --> / git switch <!-- raw HTML omitted --> 切换分支</strong></p>
+</li>
+<li>
+<p><strong>git checkout -b <!-- raw HTML omitted --> / git switch -c <!-- raw HTML omitted --> 创建并切换分支</strong></p>
+</li>
+<li>
+<p><strong>git checkout -b <!-- raw HTML omitted --> origin / <!-- raw HTML omitted --> 创建远程分支到本地</strong></p>
+</li>
+<li>
+<p><strong>git merge <!-- raw HTML omitted --> 合并某分支到当前分支</strong></p>
+</li>
+<li>
+<p><strong>git branch -d <!-- raw HTML omitted --> 删除分支</strong></p>
+</li>
+<li>
+<p><strong>git remote 查看远程库的信息</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git remote
+origin
+    
+$ git remote -v <span class="c1">#查看详细的信息</span>
+origin  https://github.com/CBlogx/learnGit.git <span class="o">(</span>fetch<span class="o">)</span>
+origin  https://github.com/CBlogx/learnGit.git <span class="o">(</span>push<span class="o">)</span> <span class="c1">#如果没有推送权限就看不到push</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>git push origin <!-- raw HTML omitted -->推送分支</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$git</span> push origin master <span class="c1">#推送到远程对应的master分支</span>
+    
+<span class="nv">$git</span> push origin dev <span class="c1">#推送到其它分支</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>master分支是主分支，因此要时刻与远程同步</p>
+<p>dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步</p>
+<p>bug分支用于本地修复，不必同步</p>
+<p>feature分支是否推到远程，取决于团队的开发</p>
+</li>
+<li>
+<p><strong>git pull 抓取当前分支对应远程分支的最新的提交</strong></p>
+</li>
+<li>
+<p><strong>git branch &ndash;set-upstream-to=origin/<!-- raw HTML omitted --> <!-- raw HTML omitted --> 本地分支与远程分支进行链接</strong></p>
+</li>
+<li>
+<p><strong>git add -f <!-- raw HTML omitted --> 强制添加该文件到Git</strong></p>
+</li>
+</ol>
+<h3 id="远程仓库">远程仓库</h3>
+<h4 id="关联远程仓库">关联远程仓库</h4>
+<ol>
+<li>
+<p><strong>创建SSH Key，用户主目录下得到的id_rsa 为私钥，id_rsa.pub为公钥</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen -t rsa -C <span class="s2">&#34;youremail@example.com&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>GitHub中的SSH Key添加公钥</strong></p>
+</li>
+<li>
+<p><strong>创建新仓库</strong></p>
+</li>
+<li>
+<p><strong>将新仓库与本地仓库进行关联，并给定一个名字，如：origin</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git remote add origin https://github.com/CBlogx/learnGit.git
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>将本地仓库的所有内容推送到远程库中</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git push -u origin master
+</code></pre></td></tr></table>
+</div>
+</div><p>由于远程库是空的，第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送到远程新的master分支，还会把本地的master分支和远程的master分支关联起来，以后推送或者拉取时就可以简化命令如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git push origin master
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h4 id="ssh警告">SSH警告</h4>
+<p>第一次使用Git的clone或者push命令连接GitHub时，会得到下列警告</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">The authenticity of host &#39;github.com (xx.xx.xx.xx)&#39; can&#39;t be established.
+RSA key fingerprint is xx.xx.xx.xx.xx.
+Are you sure you want to continue connecting (yes/no)?
+</code></pre></td></tr></table>
+</div>
+</div><p>这是因为Git使用SSH连接，而SSH连接在第一次验证GitHub服务器的Key时，需要你确认GitHub的Key的指纹信息是否真的来自GitHub的服务器，输入yes即可。Git会给出一个警告，告诉你已经把GitHub的Key添加到本机的一个信任列表里了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Warning: Permanently added &#39;github.com&#39; (RSA) to the list of known hosts.
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="删除远程库">删除远程库</h4>
+<ol>
+<li>
+<p>删除远程库前使用 <code>git remote -v</code> 查看远程库信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git remote -v
+origin  https://github.com/CBlogx/learnGit.git <span class="o">(</span>fetch<span class="o">)</span>
+origin  https://github.com/CBlogx/learnGit.git <span class="o">(</span>push<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>根据名字使用 <code>git remote rm xxx</code> 删除，比如删除origin</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git remote rm origin
+</code></pre></td></tr></table>
+</div>
+</div><p>这里“删除”只是解除了本地和远程的绑定关系，并非物理上删除了远程仓库。</p>
+</li>
+</ol>
+<h4 id="克隆远程库">克隆远程库</h4>
+<p>使用 <code>git clone &lt;Repo url&gt;</code> 克隆远程仓库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git clone git@github.com:CBlogx/gitskills.git
+Cloning into <span class="s1">&#39;gitskills&#39;</span>...
+remote: Enumerating objects: 3, <span class="k">done</span>.
+remote: Counting objects: 100% <span class="o">(</span>3/3<span class="o">)</span>, <span class="k">done</span>.
+remote: Total <span class="m">3</span> <span class="o">(</span>delta 0<span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta 0<span class="o">)</span>, pack-reused <span class="m">0</span>
+Receiving objects: 100% <span class="o">(</span>3/3<span class="o">)</span>, <span class="k">done</span>.
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git clone https://github.com/CBlogx/gitskills.git
+Cloning into <span class="s1">&#39;gitskills&#39;</span>...
+remote: Enumerating objects: 3, <span class="k">done</span>.
+remote: Counting objects: 100% <span class="o">(</span>3/3<span class="o">)</span>, <span class="k">done</span>.
+remote: Total <span class="m">3</span> <span class="o">(</span>delta 0<span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta 0<span class="o">)</span>, pack-reused <span class="m">0</span>
+Unpacking objects: 100% <span class="o">(</span>3/3<span class="o">)</span>, <span class="m">590</span> bytes <span class="p">|</span> 84.00 KiB/s, <span class="k">done</span>.
+</code></pre></td></tr></table>
+</div>
+</div><p>Git支持多种协议，其中ssh协议最快，默认的git://使用ssh，也可以使用https等其它协议，但是https除了速				度慢以外，最大的麻烦就是每次推送都必须输入口令。</p>
+<h3 id="分支管理">分支管理</h3>
+<blockquote>
+<p>master分支是一条线，Git用master指向最新的提交，再用HEAD指向master，就能确定当前的分支，以及当前分支的提交点</p>
+<p><img src="/images/git/gitImg-11.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+</blockquote>
+<h4 id="创建与合并分支">创建与合并分支</h4>
+<ol>
+<li>
+<p>创建dev分支并切换到dev分支</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git checkout -b dev
+Switched to a new branch <span class="s1">&#39;dev&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>git checkout</code> 命令加上 <code>-b</code> 参数表示创建并切换，相当于一下两条命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$git</span> branch dev <span class="c1">#创建分支</span>
+<span class="nv">$git</span> checkout dev <span class="c1">#切换分支</span>
+Switched to branch <span class="s1">&#39;dev&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/git/gitImg-12.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+</li>
+<li>
+<p>使用 <code>git branch</code> 命令查看当前分支</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git branch
+* dev <span class="c1">#当前分支</span>
+  master
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>添加并提交到dev分支</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git add README.md
+$ git commit -m <span class="s2">&#34;branch test&#34;</span>
+<span class="o">[</span>dev c6af4a6<span class="o">]</span> branch <span class="nb">test</span>
+ <span class="m">1</span> file changed, <span class="m">2</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">1</span> deletion<span class="o">(</span>-<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/images/git/gitImg-13.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+</li>
+<li>
+<p>dev分支任务完成，切换回master无法看到修改后README.md</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git checkout master
+Switched to branch <span class="s1">&#39;master&#39;</span>
+Your branch is up to date with <span class="s1">&#39;origin/master&#39;</span>.
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>将dev分支的工作成果合并到master分支上</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git merge dev
+Updating 4868722..c6af4a6
+Fast-forward
+ README.md <span class="p">|</span> <span class="m">3</span> ++-
+ <span class="m">1</span> file changed, <span class="m">2</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">1</span> deletion<span class="o">(</span>-<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>注意Fast-forward信息，Git告诉我们，这次合并是“快进模式”，也就是直接把master指向dev的当前提交，所以合并速度非常快</p>
+<p><img src="/images/git/gitImg-14.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+</li>
+<li>
+<p>成功合并后，删除dev分支</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git branch -d dev
+Deleted branch dev <span class="o">(</span>was c6af4a6<span class="o">)</span>.
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>switch</p>
+<p>由于<code>git checkout &lt;branch&gt;</code> 与 <code>git checkout -- &lt;file&gt;</code>的命令过于相似，容易混淆。新版本的Git提供了 <code>git switch</code> 命令来切换分支</p>
+<ol>
+<li>
+<p>创建并切换到新的dev分支：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git switch -c dev
+Switched to a new branch <span class="s1">&#39;dev&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>直接切换到已有的master分支：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git switch master
+Switched to branch <span class="s1">&#39;master&#39;</span>
+M       README.md
+Your branch is ahead of <span class="s1">&#39;origin/master&#39;</span> by <span class="m">1</span> commit.
+  <span class="o">(</span>use <span class="s2">&#34;git push&#34;</span> to publish your <span class="nb">local</span> commits<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+</li>
+</ol>
+<h4 id="解决冲突">解决冲突</h4>
+<h5 id="演示">演示</h5>
+<ol>
+<li>
+<p>新建分支feature1</p>
+</li>
+<li>
+<p>修改readme.txt在feature1上进行提交</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git add readme.txt
+   
+$ git commit -m <span class="s2">&#34;AND simple&#34;</span>
+<span class="o">[</span>feature1 14096d0<span class="o">]</span> AND simple
+ <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>, <span class="m">1</span> deletion<span class="o">(</span>-<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>切换到master分支</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git switch master
+Switched to branch <span class="s1">&#39;master&#39;</span>
+Your branch is ahead of <span class="s1">&#39;origin/master&#39;</span> by <span class="m">1</span> commit.
+  <span class="o">(</span>use <span class="s2">&#34;git push&#34;</span> to publish your <span class="nb">local</span> commits<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>修改readme.txt并提交</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$git</span> add readme.txt
+$ git commit -m <span class="s2">&#34;&amp; simple&#34;</span>
+<span class="o">[</span>master ac546fb<span class="o">]</span> <span class="p">&amp;</span> simple
+ <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
+ create mode <span class="m">100644</span> readme.txt
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>将master与feature1进行合并</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git merge featurel <span class="c1">#此时出现了冲突</span>
+CONFLICT <span class="o">(</span>add/add<span class="o">)</span>: Merge conflict in readme.txt
+Auto-merging readme.txt
+Automatic merge failed<span class="p">;</span> fix conflicts and <span class="k">then</span> commit the result.
+   
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>查看冲突原因</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git status
+On branch master
+Your branch is ahead of <span class="s1">&#39;origin/master&#39;</span> by <span class="m">2</span> commits.
+  <span class="o">(</span>use <span class="s2">&#34;git push&#34;</span> to publish your <span class="nb">local</span> commits<span class="o">)</span>
+   
+You have unmerged paths.
+  <span class="o">(</span>fix conflicts and run <span class="s2">&#34;git commit&#34;</span><span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">&#34;git merge --abort&#34;</span> to abort the merge<span class="o">)</span>
+   
+Unmerged paths:
+  <span class="o">(</span>use <span class="s2">&#34;git add &lt;file&gt;...&#34;</span> to mark resolution<span class="o">)</span>
+        both added:      readme.txt
+   
+no changes added to commit <span class="o">(</span>use <span class="s2">&#34;git add&#34;</span> and/or <span class="s2">&#34;git commit -a&#34;</span><span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>打开readme.txt</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-tcl" data-lang="tcl"><span class="o">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class="nv">HEAD</span>
+<span class="nv">Creating</span> a new branch is quick <span class="o">&amp;</span> simple
+<span class="o">======</span><span class="err">=</span>
+<span class="nv">Creating</span> a new branch is quick AND simple
+<span class="o">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class="nv">featurel</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Git用<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>、<code>=======</code>、<code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> 标记出不同分支的内容</p>
+</li>
+<li>
+<p>手动修改后保存并再次提交</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git add readme.txt
+$ git commit -m <span class="s2">&#34;conflict fixed&#34;</span>
+<span class="o">[</span>master 551be4a<span class="o">]</span> conflict fixed
+</code></pre></td></tr></table>
+</div>
+</div><ol start="9">
+<li>
+<p>用带参数的git log 查看分支合并的情况</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git log --graph --pretty<span class="o">=</span>oneline --abbrev-commit
+*   551be4a <span class="o">(</span>HEAD -&gt; master<span class="o">)</span> conflict fixed
+<span class="p">|</span><span class="se">\
+</span><span class="se"></span><span class="p">|</span> * 9a4daf6 <span class="o">(</span>featurel<span class="o">)</span> AND simple
+* <span class="p">|</span> ac546fb <span class="p">&amp;</span> simple
+<span class="p">|</span>/
+* c6af4a6 <span class="o">(</span>dev<span class="o">)</span> branch <span class="nb">test</span>
+* <span class="m">4868722</span> <span class="o">(</span>origin/master<span class="o">)</span> testNewConnect
+* 4abaec1 remove readme
+* 362f09b understand how stage works
+* 43631c6 append GPL
+* 648861c add distributed
+* a982fbb wrote
+   
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>删除feature1分支</p>
+</li>
+</ol>
+<blockquote>
+<p>使用git log &ndash;graph 可以查看分支合并图</p>
+</blockquote>
+<h4 id="分支管理策略">分支管理策略</h4>
+<h5 id="merge的--no-ff方式">merge的&ndash;no-ff方式</h5>
+<ol>
+<li>创建并切换dev分支</li>
+<li>修改readme.txt并提交</li>
+<li>切换回master分支</li>
+<li>使用&ndash;no-ff合并分支，&ndash;no-ff表示禁用fast forward模式</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git merge --no-ff -m <span class="s2">&#34;merge with no-ff&#34;</span> dev 
+<span class="c1">#因为本次合并要创建一个新的commit，所以加上-m参数，把commit描述写进去</span>
+Merge made by the <span class="s1">&#39;recursive&#39;</span> strategy.
+ readme.txt <span class="p">|</span> <span class="m">1</span> +
+ <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>使用git log 查看分支历史</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git log --graph --pretty<span class="o">=</span>oneline --abbrev-commit
+*   622131f <span class="o">(</span>HEAD -&gt; master<span class="o">)</span> merge with no-ff
+<span class="p">|</span><span class="se">\
+</span><span class="se"></span><span class="p">|</span> * 56aa0b6 <span class="o">(</span>dev<span class="o">)</span> add merge
+<span class="p">|</span>/
+*   551be4a conflict fixed
+...
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到，不使用Fast forward模式，merge后就像下图。合并时使用&ndash;no-ff就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。</p>
+<p><img src="/images/git/gitImg-15.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<h4 id="bug分支">Bug分支</h4>
+<h5 id="演示-1">演示</h5>
+<blockquote>
+<p>假定此时正在dev分支工作，但bug出现在master需要在master分支上修复，此时dev现场如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git status
+On branch dev
+Changes to be committed:
+<span class="o">(</span>use <span class="s2">&#34;git reset HEAD &lt;file&gt;...&#34;</span> to unstage<span class="o">)</span>
+
+	new file:   hello.py
+
+Changes not staged <span class="k">for</span> commit:
+<span class="o">(</span>use <span class="s2">&#34;git add &lt;file&gt;...&#34;</span> to update what will be committed<span class="o">)</span>
+<span class="o">(</span>use <span class="s2">&#34;git checkout -- &lt;file&gt;...&#34;</span> to discard changes in working directory<span class="o">)</span>
+
+	modified:   readme.txt
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<ol>
+<li>
+<p>保存dev工作现场</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git stash
+Saved working directory and index state WIP on dev: f52c633 add merge
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>切换回master分支并从master创建临时分支</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git checkout master
+Switched to branch <span class="s1">&#39;master&#39;</span>
+Your branch is ahead of <span class="s1">&#39;origin/master&#39;</span> by <span class="m">6</span> commits.
+  <span class="o">(</span>use <span class="s2">&#34;git push&#34;</span> to publish your <span class="nb">local</span> commits<span class="o">)</span>
+     
+$ git checkout -b issue-101 <span class="c1">#创建issue-101临时分支</span>
+Switched to a new branch <span class="s1">&#39;issue-101&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>bug出现在readme.txt，修复bug并提交，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git add readme.txt
+$ git commit -m <span class="s2">&#34;fix bug 101&#34;</span>
+<span class="o">[</span>issue-101 f940c69<span class="o">]</span> “fix bug <span class="m">101</span>
+ <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>修复完成后，切换到master分支，并完成合并，最后删除issue-101分支</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git switch master
+Switched to branch <span class="s1">&#39;master&#39;</span>
+Your branch is ahead of <span class="s1">&#39;origin/master&#39;</span> by <span class="m">6</span> commits.
+  <span class="o">(</span>use <span class="s2">&#34;git push&#34;</span> to publish your <span class="nb">local</span> commits<span class="o">)</span>
+   
+$ git merge --no-ff -m <span class="s2">&#34;merged bug fix 101&#34;</span> issue-101
+Merge made by the <span class="s1">&#39;recursive&#39;</span> strategy.
+ readme.txt <span class="p">|</span> <span class="m">1</span> +
+ <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>回到dev分支，查看工作状态</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git switch dev
+Switched to branch <span class="s1">&#39;dev&#39;</span>
+   
+$ git status <span class="c1">#???工作现场不见了</span>
+On branch dev
+nothing to commit, working tree clean
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>使用<code>git stash list</code>命令查看</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git stash list
+stash@<span class="o">{</span>0<span class="o">}</span>: WIP on dev: f52c633 add merge <span class="c1">#Git把stash内容存在stash@{0}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>恢复工作现场</p>
+<ol>
+<li>
+<p>使用 <code>git stash apply</code>恢复，但是stash内容不会自动删除，需要使用 <code>git stash drop</code> 删除</p>
+</li>
+<li>
+<p>使用 <code>git stash pop</code> 恢复的同时删除stash</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git stash pop
+On branch dev
+Changes to be committed:
+  <span class="o">(</span>use <span class="s2">&#34;git reset HEAD &lt;file&gt;...&#34;</span> to unstage<span class="o">)</span>
+      
+	new file:   hello.py
+      
+Changes not staged <span class="k">for</span> commit:
+  <span class="o">(</span>use <span class="s2">&#34;git add &lt;file&gt;...&#34;</span> to update what will be committed<span class="o">)</span>
+  <span class="o">(</span>use <span class="s2">&#34;git checkout -- &lt;file&gt;...&#34;</span> to discard changes in working directory<span class="o">)</span>
+      
+	modified:   readme.txt
+      
+Dropped refs/stash@<span class="o">{</span>0<span class="o">}</span> <span class="o">(</span>5d677e2ee266f39ea296182fb2354265b91b3b2a<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以多次stash，恢复的时候，使用 <code>git stash list</code> 查看，然后恢复到指定的stash</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$git</span> stash apply stash@<span class="o">{</span>0<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+</li>
+</ol>
+<h5 id="cherry-pick">cherry-pick</h5>
+<blockquote>
+<p>因为dev是master的分支，因此dev上也存在相同的bug，我们需要把f940c69 fix bug 101 这个提交所作的修改“复制”到dev分支即可。为了方便操作，Git提供了一个cherry-pick命令</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git switch dev
+Switched to branch <span class="s1">&#39;dev&#39;</span>
+
+$ git cherry-pick f940c69
+<span class="o">[</span>dev 43397d6<span class="o">]</span> “fix bug <span class="m">101</span>
+ Date: Sun Sep <span class="m">19</span> 15:24:10 <span class="m">2021</span> +0800
+ <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Git自动给dev分支做了一次提交，不过需要注意的是如果直接在dev分支上修复bug再在master分支上使用cherry-pick时，我们也需要使用<code>git stash</code>保存dev的工作现场之后才能切换分支</p>
+<h4 id="未合并的分支">未合并的分支</h4>
+<blockquote>
+<p>我们创建一个新的feature分支，在该分支中提交了新的工作，然后回到dev分支，此时不想要feature中的内容，我们想要销毁该分支</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git branch -d feature
+error: The branch <span class="s1">&#39;feature&#39;</span> is not fully merged.
+If you are sure you want to delete it, run <span class="s1">&#39;git branch -D feature&#39;</span>.
+</code></pre></td></tr></table>
+</div>
+</div><p>使用<code>git branch -d feature</code>，无法销毁，那么我们就要使用<code>git branch -D feature</code>强行销毁</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git branch -D feature
+Deleted branch feature <span class="o">(</span>was e72ce22<span class="o">)</span>.
+</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h4 id="多人协作模式">多人协作模式</h4>
+<ol>
+<li>试图使用 <code>git push origin &lt;branch-name&gt;</code> 推送自己的修改</li>
+<li>如果推送失败，则因为远程分支比你的本地更新，需要先用 <code>git pull</code> 进行合并</li>
+<li>如果合并有冲突，则解决冲突，并在本地提交</li>
+<li>没有冲突/解决冲突后，再用 <code>git push origin &lt;branch-name&gt;</code>推送</li>
+<li>如果 <code>git pull</code> 提示 <code>no tracking information</code> 则说明本地分支和远程分支链接关系没有创建，用命令 <code>git branch --set-upstream-to &lt;branch-name&gt; origin/&lt;branch-name&gt;</code> 进行链接</li>
+</ol>
+<h4 id="rebase">Rebase</h4>
+<p>多次合并再push后，使用 <code>git log </code> 查看分支合并情况时，情况如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git log --graph --pretty<span class="o">=</span>oneline --abbrev-commit
+* d1be385 <span class="o">(</span>HEAD -&gt; master, origin/master<span class="o">)</span> init hello
+*   e5e69f1 Merge branch <span class="s1">&#39;dev&#39;</span>
+<span class="p">|</span><span class="se">\ </span> 
+<span class="p">|</span> *   57c53ab <span class="o">(</span>origin/dev, dev<span class="o">)</span> fix env conflict
+<span class="p">|</span> <span class="p">|</span><span class="se">\ </span> 
+<span class="p">|</span> <span class="p">|</span> * 7a5e5dd add env
+<span class="p">|</span> * <span class="p">|</span> 7bd91f1 add new env
+<span class="p">|</span> <span class="p">|</span>/  
+* <span class="p">|</span>   12a631b merged bug fix <span class="m">101</span>
+<span class="p">|</span><span class="se">\ \ </span> 
+<span class="p">|</span> * <span class="p">|</span> 4c805e2 fix bug <span class="m">101</span>
+<span class="p">|</span>/ /  
+* <span class="p">|</span>   e1e9c68 merge with no-ff
+<span class="p">|</span><span class="se">\ \ </span> 
+<span class="p">|</span> <span class="p">|</span>/  
+<span class="p">|</span> * f52c633 add merge
+<span class="p">|</span>/  
+*   cf810e4 conflict fixed
+</code></pre></td></tr></table>
+</div>
+</div><p>使用<code>git rebase</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git rebase
+First, rewinding head to replay your work on top of it...
+Applying: add comment
+Using index info to reconstruct a base tree...
+M	hello.py
+Falling back to patching base and 3-way merge...
+Auto-merging hello.py
+Applying: add author
+Using index info to reconstruct a base tree...
+M	hello.py
+Falling back to patching base and 3-way merge...
+Auto-merging hello.py
+
+$ git log --graph --pretty<span class="o">=</span>oneline --abbrev-commit
+* 7e61ed4 <span class="o">(</span>HEAD -&gt; master<span class="o">)</span> add author
+* 3611cfe add comment
+* f005ed4 <span class="o">(</span>origin/master<span class="o">)</span> <span class="nb">set</span> <span class="nv">exit</span><span class="o">=</span><span class="m">1</span>
+* d1be385 init hello
+...
+</code></pre></td></tr></table>
+</div>
+</div><p>使用Rebase的特点：把分叉的提交历史“整理”成一条直线，看上去更直观，但是缺点是本地的分叉提交已经被修改过</p>
+<h3 id="标签管理">标签管理</h3>
+<blockquote>
+<p>Git的标签可以当作版本库的快照，但其实它就是指向某个commit的指针，创建和删除标签都是瞬间完成的</p>
+</blockquote>
+<h4 id="创建标签">创建标签</h4>
+<ol>
+<li>使用 <code>git tag &lt;name&gt; [commit id]</code>  创建新标签</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git tag v1.0 <span class="c1">#创建一个新标签，默认为HEAD创建，也可以指定一个commit id</span>
+
+$ git tag <span class="c1">#查看所有标签</span>
+v1.0
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>
+<p>给历史提交打上标签</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git log --pretty<span class="o">=</span>oneline --abbrev-commit
+a7d7049 <span class="o">(</span>HEAD -&gt; master, tag: v1.0, origin/master<span class="o">)</span> merged bug fix <span class="m">101</span>
+f940c69 “fix bug <span class="m">101</span>
+622131f merge with no-ff
+56aa0b6 add merge
+551be4a conflict fixed
+ac546fb <span class="p">&amp;</span> simple
+9a4daf6 AND simple
+c6af4a6 branch <span class="nb">test</span>
+<span class="m">4868722</span> testNewConnect
+4abaec1 remove readme
+362f09b understand how stage works
+43631c6 append GPL
+648861c add distributed
+a982fbb wrote
+   
+$ git tag v0.9 f940c69 <span class="c1">#给commit id为 f940c69 的提交打标签</span>
+   
+$ git tag
+v0.9
+v1.0
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>使用 <code>git show &lt;tagname&gt;</code> 查看标签信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git show v0.9
+commit f940c69803cb84afcacff84cc3917df55ff03f28 <span class="o">(</span>tag: v0.9<span class="o">)</span>
+Author: CBlogx &lt;CBlogx@github.com&gt;
+Date:   Sun Sep <span class="m">19</span> 15:24:10 <span class="m">2021</span> +0800
+   
+    “fix bug <span class="m">101</span>
+   
+diff --git a/readme.txt b/readme.txt
+index 13dbc4b..ed1e735 <span class="m">100644</span>
+--- a/readme.txt
++++ b/readme.txt
+@@ -2,3 +2,4 @@ Creating a new branch is quick and simple
+   
+ Git is god
+   
++Git is a free software
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>创建带有说明的标签，用 <code>-a</code> 指定标签名，<code>-m</code> 指定说明文字</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git tag -a v0.1 -m <span class="s2">&#34;version 0.1 released&#34;</span> 622131f
+   
+$ git show v0.1
+tag v0.1 <span class="c1">#标签名</span>
+Tagger: CBlogx &lt;CBlogx@github.com&gt;
+Date:   Sun Sep <span class="m">19</span> 17:01:18 <span class="m">2021</span> +0800
+   
+version 0.1 released <span class="c1">#说明信息</span>
+   
+commit 622131f76462118d3528317c70bf9c50f622e6a9 <span class="o">(</span>tag: v0.1<span class="o">)</span>
+Merge: 551be4a 56aa0b6
+Author: CBlogx &lt;CBlogx@github.com&gt;
+Date:   Sun Sep <span class="m">19</span> 15:06:12 <span class="m">2021</span> +0800
+   
+    merge with no-ff
+   
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h4 id="操作标签">操作标签</h4>
+<ol>
+<li>
+<p>删除标签 <code>git tag -d &lt;tagname&gt;</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git tag -d v0.1
+Deleted tag <span class="s1">&#39;v0.1&#39;</span> <span class="o">(</span>was b20c2b5<span class="o">)</span>
+<span class="c1">#创建的标签都只存储再本地，不会自动推送到远程。所以，打错的标签可以再本地安全删除</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>推送标签 <code>git push origin &lt;tagname&gt;</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git push origin v1.0 <span class="c1">#选择标签推送</span>
+Total <span class="m">0</span> <span class="o">(</span>delta 0<span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta 0<span class="o">)</span>, pack-reused <span class="m">0</span>
+To https://github.com/CBlogx/learnGit.git
+ * <span class="o">[</span>new tag<span class="o">]</span>         v1.0 -&gt; v1.0
+    
+$ git push origin --tags <span class="c1">#推送所有标签</span>
+Total <span class="m">0</span> <span class="o">(</span>delta 0<span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta 0<span class="o">)</span>, pack-reused <span class="m">0</span>
+To https://github.com/CBlogx/learnGit.git
+ * <span class="o">[</span>new tag<span class="o">]</span>         v0.9 -&gt; v0.9
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>删除远程标签的三种方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git tag -d v0.9 <span class="c1">#先删除本地标签</span>
+Deleted tag <span class="s1">&#39;v0.9&#39;</span> <span class="o">(</span>was f940c69<span class="o">)</span>
+   
+$ git push origin :refs/tags/v0.9 <span class="c1">#删除远程标签(1)</span>
+To https://github.com/CBlogx/learnGit.git
+ - <span class="o">[</span>deleted<span class="o">]</span>         v0.9
+   
+$ git push origin :v1.0 <span class="c1">#删除远程标签(2)</span>
+To https://github.com/CBlogx/learnGit.git
+ - <span class="o">[</span>deleted<span class="o">]</span>         v1.0
+   
+$ git push origin --delete tag v1.0 <span class="c1">#删除远程标签(3)</span>
+To https://github.com/CBlogx/learnGit.git
+ - <span class="o">[</span>deleted<span class="o">]</span>         v1.0
+   
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="工作区与暂存区">工作区与暂存区</h3>
+<ul>
+<li>工作区的隐藏目录 .git 为Git的版本库</li>
+</ul>
+<p><img src="/images/git/gitImg-16.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p>版本库中最重要的是称为stage的暂存区、Git自动创建的第一个分支master以及指向master的指针HEAD</p>
+<ul>
+<li>
+<p>把文件添加进版本库，分两步执行</p>
+<ol>
+<li>git add 把文件修改添加到暂存区</li>
+<li>git commit 把暂存区的所有内容提交到当前分支</li>
+</ol>
+<p><strong>演示：</strong></p>
+<ol>
+<li>
+<p>新增一个LICENSE文本文件</p>
+<p><img src="/images/git/gitImg-17.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+</li>
+<li>
+<p>使用两次git add 添加readme.txt 和 LICENSE</p>
+<p><img src="/images/git/gitImg-18.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<p><strong>此时暂存区状态</strong></p>
+<p><img src="/images/git/gitImg-19.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+</li>
+<li>
+<p>使用git commit -m <!-- raw HTML omitted --> 提交后</p>
+<p><img src="/images/git/gitImg-20.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="自定义git">自定义Git</h3>
+<h4 id="忽略特殊文件">忽略特殊文件</h4>
+<p>Git中配备了.gitignore 文件用来忽略特殊的文件</p>
+<blockquote>
+<p>忽略原则：</p>
+<ol>
+<li>忽略操作系统自动生成的文件，比如缩略图</li>
+<li>忽略编译生成的中间文件、可执行文件，也就是如果一个文件是通过另一个文件自动生成的，那自动生成的文件就没必要放进版本库，比如java编译产生的.class文件</li>
+<li>忽略你自己的带有敏感信息的配置文件，比如存放口令的配置文件</li>
+</ol>
+</blockquote>
+<h4 id="配置举例">配置举例</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 排除所有.开头的隐藏文件:</span>
+.*
+<span class="c1"># 排除所有.class文件:</span>
+*.class
+
+<span class="c1"># 不排除.gitignore和App.class:</span>
+!.gitignore
+!App.class
+</code></pre></td></tr></table>
+</div>
+</div>
+</section>
+ <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/git/">git</a>
+        
+    </section>
+
+    <section class="article-saying">
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+</section>
+
+
+    </footer>
+
+  
+</article>
+
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="CBlogx/CBlogx.github.io"
+        issue-term="title"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2022 Cheng の webstie
+    </section>
+    
+    <section class="powerby">
+        
+            Website Built By Cheng <br/>
+        
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src=""integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src=""integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href=""integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href=""integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#集中式vs分布式"><strong>集中式VS分布式</strong></a>
+      <ol>
+        <li><a href="#集中式版本控制系统">集中式版本控制系统</a></li>
+        <li><a href="#分布式版本控制系统">分布式版本控制系统</a></li>
+      </ol>
+    </li>
+    <li><a href="#git的安装"><strong>Git的安装</strong></a>
+      <ol>
+        <li><a href="#linux系统">Linux系统</a></li>
+        <li><a href="#macos">MacOS</a></li>
+        <li><a href="#windows">Windows</a></li>
+        <li><a href="#设置参数">设置参数</a></li>
+        <li><a href="#说明">说明</a></li>
+      </ol>
+    </li>
+    <li><a href="#git的使用"><strong>Git的使用</strong></a>
+      <ol>
+        <li><a href="#git命令">Git命令</a></li>
+        <li><a href="#远程仓库">远程仓库</a>
+          <ol>
+            <li><a href="#关联远程仓库">关联远程仓库</a></li>
+            <li><a href="#ssh警告">SSH警告</a></li>
+            <li><a href="#删除远程库">删除远程库</a></li>
+            <li><a href="#克隆远程库">克隆远程库</a></li>
+          </ol>
+        </li>
+        <li><a href="#分支管理">分支管理</a>
+          <ol>
+            <li><a href="#创建与合并分支">创建与合并分支</a></li>
+            <li><a href="#解决冲突">解决冲突</a></li>
+            <li><a href="#分支管理策略">分支管理策略</a></li>
+            <li><a href="#bug分支">Bug分支</a></li>
+            <li><a href="#未合并的分支">未合并的分支</a></li>
+            <li><a href="#多人协作模式">多人协作模式</a></li>
+            <li><a href="#rebase">Rebase</a></li>
+          </ol>
+        </li>
+        <li><a href="#标签管理">标签管理</a>
+          <ol>
+            <li><a href="#创建标签">创建标签</a></li>
+            <li><a href="#操作标签">操作标签</a></li>
+          </ol>
+        </li>
+        <li><a href="#工作区与暂存区">工作区与暂存区</a></li>
+        <li><a href="#自定义git">自定义Git</a>
+          <ol>
+            <li><a href="#忽略特殊文件">忽略特殊文件</a></li>
+            <li><a href="#配置举例">配置举例</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<script type="module" src="/js/background.js"></script>
+
+
+    </body>
+</html>

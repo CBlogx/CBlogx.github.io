@@ -103,7 +103,6 @@
     ol {
       list-style-type: none;
       counter-reset: item;
-
       li a::before {
         counter-increment: item;
         content: counters(item, ".") ". ";

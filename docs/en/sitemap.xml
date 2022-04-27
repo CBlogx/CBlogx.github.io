@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://cblogx.github.io/categories/</loc>
-    <lastmod>2022-04-25T19:37:15+08:00</lastmod>
+    <lastmod>2022-04-27T23:20:46+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -16,7 +16,7 @@
                 />
   </url><url>
     <loc>https://cblogx.github.io/</loc>
-    <lastmod>2022-04-25T19:37:15+08:00</lastmod>
+    <lastmod>2022-04-27T23:20:46+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -28,17 +28,20 @@
                 href="https://cblogx.github.io/"
                 />
   </url><url>
-    <loc>https://cblogx.github.io/tags/nuxt/</loc>
-    <lastmod>2022-04-25T19:37:15+08:00</lastmod>
+    <loc>https://cblogx.github.io/tags/git/</loc>
+    <lastmod>2022-04-27T23:20:46+08:00</lastmod>
   </url><url>
-    <loc>https://cblogx.github.io/categories/nuxt/</loc>
-    <lastmod>2022-04-25T19:37:15+08:00</lastmod>
+    <loc>https://cblogx.github.io/categories/git/</loc>
+    <lastmod>2022-04-27T23:20:46+08:00</lastmod>
+  </url><url>
+    <loc>https://cblogx.github.io/post/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2022-04-27T23:20:46+08:00</lastmod>
   </url><url>
     <loc>https://cblogx.github.io/post/</loc>
-    <lastmod>2022-04-25T19:37:15+08:00</lastmod>
+    <lastmod>2022-04-27T23:20:46+08:00</lastmod>
   </url><url>
     <loc>https://cblogx.github.io/tags/</loc>
-    <lastmod>2022-04-25T19:37:15+08:00</lastmod>
+    <lastmod>2022-04-27T23:20:46+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -49,6 +52,12 @@
                 hreflang="en"
                 href="https://cblogx.github.io/tags/"
                 />
+  </url><url>
+    <loc>https://cblogx.github.io/tags/nuxt/</loc>
+    <lastmod>2022-04-25T19:37:15+08:00</lastmod>
+  </url><url>
+    <loc>https://cblogx.github.io/categories/nuxt/</loc>
+    <lastmod>2022-04-25T19:37:15+08:00</lastmod>
   </url><url>
     <loc>https://cblogx.github.io/tags/vue/</loc>
     <lastmod>2022-04-25T19:37:15+08:00</lastmod>

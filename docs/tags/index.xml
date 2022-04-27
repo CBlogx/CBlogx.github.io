@@ -6,7 +6,15 @@
         <description>Recent content in Tags on Cheng の webstie</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Mon, 25 Apr 2022 19:37:15 +0800</lastBuildDate><atom:link href="https://cblogx.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 27 Apr 2022 23:20:46 +0800</lastBuildDate><atom:link href="https://cblogx.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>git</title>
+        <link>https://cblogx.github.io/tags/git/</link>
+        <pubDate>Wed, 27 Apr 2022 23:20:46 +0800</pubDate>
+        
+        <guid>https://cblogx.github.io/tags/git/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>nuxt</title>
         <link>https://cblogx.github.io/tags/nuxt/</link>
         <pubDate>Mon, 25 Apr 2022 19:37:15 +0800</pubDate>

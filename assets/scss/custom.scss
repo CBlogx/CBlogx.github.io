@@ -56,10 +56,10 @@ body {
     margin-left: auto !important;
     margin-right: auto !important;
   }
-  .en{
+  .en {
     font-family: "alagard";
   }
-  .zh{
+  .zh {
     font-size: 16px;
     font-family: "STXinwei";
   }
@@ -79,10 +79,19 @@ div.chroma {
     height: 12px;
     box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f;
     -webkit-box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f;
+    
   }
   &::after {
-    content: " ";
+    content: "";
     display: block;
+    // display: inline-block;
+    // background: #ff5f56;
+    // border-radius: 50%;
     height: 12px;
+    // pointer-events: auto;
+  }
+  pre {
+    max-height: 300px;
+    overflow: hidden;
   }
 }
