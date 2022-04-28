@@ -65,33 +65,49 @@ body {
   }
 }
 
+/* 代码块样式 */
 div.chroma {
-  border-radius: 10px;
-  padding-left: 10px;
+  background: var(--code-header-background) !important;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   &::before {
     content: " ";
     position: sticky;
     display: inline-block;
-    margin-left: 3.5px;
+    margin-left: 12px;
     background: #ff5f56;
     border-radius: 50%;
     width: 12px;
     height: 12px;
     box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f;
     -webkit-box-shadow: 20px 0 #ffbd2e, 40px 0 #27c93f;
-    
   }
   &::after {
     content: "";
+    background: var(--code-content-background) !important;
     display: block;
-    // display: inline-block;
-    // background: #ff5f56;
-    // border-radius: 50%;
     height: 12px;
-    // pointer-events: auto;
+  }
+  tr,
+  tbody {
+    display: block !important;
+    width: 100% !important;
+  }
+  td:nth-child(1) {
+    pre {
+      padding-left: 10px !important;
+    }
+  }
+  td:nth-child(2) {
+    width: 100% !important;
   }
   pre {
+    background: var(--code-content-background) !important;
     max-height: 300px;
     overflow: hidden;
   }
+}
+
+div.highlight {
+  background-color: var(--code-highlight-background) !important;
 }
