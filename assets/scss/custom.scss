@@ -44,8 +44,12 @@ body {
 
 /* 文章底部saying */
 .article-saying {
+  width: 100%;
+  height: 100%;
+  
   font-style: italic;
-  display: inline !important;
+  margin-top: 10px;
+  display: inline-block !important;
   color: var(--footer-saying-color) !important;
   text-align: center;
   display: flex;

@@ -1,8 +1,19 @@
-<section class="article-saying">
-    {{ range $key,$val := .Params }}
-        {{ if eq (substr $key 0 6) ("saying")}}
-        {{ $className := (substr $key 7 )}}
+
+{{ if .Params.Saying}}
+    <section class="article-saying">
+        {{ range $key,$val := .Params.Saying }}
+            {{ $className := (substr $key 7 )}}
             <p class={{$className}}>{{ $val }}</p>
         {{ end }}
+    </section>
+{{ else }}
+    {{ range $key,$val := .Params }}
+        {{ if eq (substr $key 0 6) ("saying") }}
+            <section class="article-saying">
+                {{ $className := (substr $key 7 )}}
+                <p class={{$className}}>{{ $val }}</p>
+            </section>    
+        {{ end }}
     {{ end }}
-</section>
+{{ end }}
+
