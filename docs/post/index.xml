@@ -6,7 +6,56 @@
         <description>Recent content in Posts on Cheng の webstie</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Wed, 27 Apr 2022 23:20:46 +0800</lastBuildDate><atom:link href="https://cblogx.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 30 Apr 2022 10:50:31 +0800</lastBuildDate><atom:link href="https://cblogx.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>事件驱动和路由驱动</title>
+        <link>https://cblogx.github.io/post/%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E5%92%8C%E8%B7%AF%E7%94%B1%E9%A9%B1%E5%8A%A8/</link>
+        <pubDate>Sat, 30 Apr 2022 10:50:31 +0800</pubDate>
+        
+        <guid>https://cblogx.github.io/post/%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E5%92%8C%E8%B7%AF%E7%94%B1%E9%A9%B1%E5%8A%A8/</guid>
+        <description>&lt;h2 id=&#34;事件驱动&#34;&gt;事件驱动&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;事件&lt;/strong&gt;：针对应用所要发生的事情并使应用做出响应
+&lt;strong&gt;事件处理&lt;/strong&gt;：有针对性的，通过预先编制好的代码来对事件进行处理
+&lt;strong&gt;事件驱动思维&lt;/strong&gt;：用户行为 =&amp;gt; 事件响应 =&amp;gt; 代码运行 =&amp;gt; 更新UI
+运用事件驱动思维进行编程，我们编写代码时的思路如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;开发静态页面&lt;/li&gt;
+&lt;li&gt;添加事件监听&lt;/li&gt;
+&lt;li&gt;针对不同事件编写不同的处理逻辑&lt;/li&gt;
+&lt;li&gt;根据计算后得到的数据，重新渲染页面&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通俗地说，使用事件驱动思维去进行编程就是：从事件响应应得到结果出发，来完成应用的设计和编程。&lt;/p&gt;
+&lt;h2 id=&#34;路由驱动&#34;&gt;路由驱动&lt;/h2&gt;
+&lt;p&gt;路由驱动也称为数据驱动，
+​&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据&lt;/strong&gt;
+什么是数据？引用官方的一句话“数据是事实或观察的结果，是对客观事物的逻辑归纳，适用于表示客观事物的未经加工的原始素材”嗯？这句话看起来有点晦涩难懂，其实数据无非是一堆能够用来体现事物属性，描述事务构成的东西。比如声音、图像等成为模拟数据，符号、文字等成为数字数据。
+​&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据驱动思维：&lt;/strong&gt; 设计数据结构 =&amp;gt; 事件绑定逻辑 =&amp;gt; 数据变化 =&amp;gt; 更新UI
+运用数据驱动思维去实现编程，我们更多的是思考数据的维护和处理，而无需过于考虑UI的变化和事件的监听。
+​&lt;/p&gt;
+&lt;h2 id=&#34;事件驱动-vs-数据驱动&#34;&gt;事件驱动 VS 数据驱动&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;事件驱动&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;页面构建：设计DOM =&amp;gt; 生成DOM =&amp;gt; 事件绑定&lt;/li&gt;
+&lt;li&gt;事件监听：操作UI =&amp;gt; 触发事件 =&amp;gt; 响应处理 =&amp;gt; 更新UI&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;数据驱动&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;页面构建：设计数据结构 =&amp;gt; 事件绑定逻辑 =&amp;gt; 生成DOM&lt;/li&gt;
+&lt;li&gt;事件监听：操作UI =&amp;gt; 触发事件 =&amp;gt; 响应处理 =&amp;gt; 数据变化 =&amp;gt; 更新UI&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;数据驱动和事件驱动可以说有一个是被动的，一个是主动。事件驱动中必须有个引起事件的sender，而数据驱动是被动的，只要数据发生改变，就由下至上的传递到需要使用的地方，不受sender的控制。
+从事件驱动转变为数据驱动，在事件驱动的思维下我们会把组件视作DOM，把事件/逻辑处理视作Javascript，把样式视为CSS。转变到数据驱动思维之后，我们会把这些组件、事件、逻辑处理、样式都看作数据，我们需要做的只是对数据状态的处理。使用数据驱动的思维编程，我们将会有如下好处：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;数据变化更方便&lt;/li&gt;
+&lt;li&gt;DOM结构更轻巧&lt;/li&gt;
+&lt;li&gt;DOM结构调整更低耗&lt;/li&gt;
+&lt;li&gt;抽象设计&lt;/li&gt;
+&lt;li&gt;代码量相对减少，易于维护&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
         <title>Git学习笔记</title>
         <link>https://cblogx.github.io/post/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Wed, 27 Apr 2022 23:20:46 +0800</pubDate>
