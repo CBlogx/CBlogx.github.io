@@ -72,6 +72,7 @@ params:
       local: true
       # 本地放置在assets/img文件夹下
       src: img/avatar.png
+      title: 更新慢，下一个春天必上岸
 
   # 文章页面相关设置
   article:

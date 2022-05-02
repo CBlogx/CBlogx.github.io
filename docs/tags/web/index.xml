@@ -13,8 +13,8 @@
         
         <guid>https://cblogx.github.io/post/%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E5%92%8C%E8%B7%AF%E7%94%B1%E9%A9%B1%E5%8A%A8/</guid>
         <description>&lt;h2 id=&#34;事件驱动&#34;&gt;事件驱动&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;事件&lt;/strong&gt;：针对应用所要发生的事情并使应用做出响应
-&lt;strong&gt;事件处理&lt;/strong&gt;：有针对性的，通过预先编制好的代码来对事件进行处理
+&lt;p&gt;&lt;strong&gt;事件&lt;/strong&gt;：针对应用所要发生的事情并使应用做出响应&lt;br&gt;
+&lt;strong&gt;事件处理&lt;/strong&gt;：有针对性的，通过预先编制好的代码来对事件进行处理&lt;br&gt;
 &lt;strong&gt;事件驱动思维&lt;/strong&gt;：用户行为 =&amp;gt; 事件响应 =&amp;gt; 代码运行 =&amp;gt; 更新UI
 运用事件驱动思维进行编程，我们编写代码时的思路如下：&lt;/p&gt;
 &lt;ol&gt;
