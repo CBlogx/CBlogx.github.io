@@ -6,7 +6,87 @@
         <description>Recent content in Posts on Cheng の webstie</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sat, 30 Apr 2022 10:50:31 +0800</lastBuildDate><atom:link href="https://cblogx.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 07 May 2022 00:28:11 +0800</lastBuildDate><atom:link href="https://cblogx.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Ccache使用加快内核编译速度</title>
+        <link>https://cblogx.github.io/post/ccache%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%BF%AB%E5%86%85%E6%A0%B8%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/</link>
+        <pubDate>Sat, 07 May 2022 00:28:11 +0800</pubDate>
+        
+        <guid>https://cblogx.github.io/post/ccache%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%BF%AB%E5%86%85%E6%A0%B8%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/</guid>
+        <description>&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;首先 sudo apt-get install ccache 进行安装&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 vim ~/.bashrc 或者 gedit ~/.bashrc 打开 bashrc 配置文件即可&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将下列代码块复制到 bashrc 文件的末尾(注意这 CCACHE_DIR 中的 ubuntu 指的是你的当前系统用户名)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;  &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;USE_CCACHE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+  &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;CCACHE_DIR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/home/ubuntu/.ccache&amp;#34;&lt;/span&gt;
+  &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;CC&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;ccache gcc&amp;#34;&lt;/span&gt;
+  &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;CXX&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;ccache g++&amp;#34;&lt;/span&gt;
+  &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;:/usr/lib/ccache&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;使用 source ~/.bashrc 使配置生效&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;检查，使用 which g++，若输出的为/usr/lib/ccache 则成功&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;内核态和用户态下的 ccache 并不相通&lt;/li&gt;
+&lt;li&gt;用户态下看到的是/usr/lib/ccache/g++&lt;/li&gt;
+&lt;li&gt;内核态下看到的是/usr/bin/g++（我的系统是这样显示的）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;使用 ccache -M 50G 来调整一下 ccache 的大小（50G 是根据自己需求大小来调整的）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用方法：
+编译普通 c 文件：输入 ccache gcc xxx（gcc xxx 为正常 gcc 编译命令）
+编译内核: 切换到 root，进入到你的 Linux 源码包
+使用 make 语句时加上 CC=&amp;lsquo;ccache gcc&amp;rsquo;
+即 make CC=&amp;lsquo;ccache gcc&amp;rsquo;
+（末尾可以加上 -j4 以更快的速度编译，前提 cpu 为四核）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ccache 实际上是利用了缓存机制来加速内核的编译，
+将编译过程中使用到 gcc/g++编译的部分保存下来，
+再次编译时则会跳过已编译且无更改的部分。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;初次使用时编译时间还没有改变，
+但是以后再编译时时间就会快很多
+（若更改了虚拟机的配置，可能会要重新配置 ccache）
+亲测内核编译从原本的 55 分钟变为了 15 分钟，爽啊！&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当然使用 ccache 也是会有缺点的，不过对正常使用的影响一般来说并不算
+大， 使用 ccache 之后能看到内存和磁盘的使用率会有显著的提高，对于内存偏小的
+朋友需要谨慎使用 ccache，否则可能会造成物理机无法正常使用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
         <title>事件驱动和路由驱动</title>
         <link>https://cblogx.github.io/post/%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E5%92%8C%E8%B7%AF%E7%94%B1%E9%A9%B1%E5%8A%A8/</link>
         <pubDate>Sat, 30 Apr 2022 10:50:31 +0800</pubDate>
@@ -15,7 +95,7 @@
         <description>&lt;h2 id=&#34;事件驱动&#34;&gt;事件驱动&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;事件&lt;/strong&gt;：针对应用所要发生的事情并使应用做出响应&lt;br&gt;
 &lt;strong&gt;事件处理&lt;/strong&gt;：有针对性的，通过预先编制好的代码来对事件进行处理&lt;br&gt;
-&lt;strong&gt;事件驱动思维&lt;/strong&gt;：用户行为 =&amp;gt; 事件响应 =&amp;gt; 代码运行 =&amp;gt; 更新UI
+&lt;strong&gt;事件驱动思维&lt;/strong&gt;：用户行为 =&amp;gt; 事件响应 =&amp;gt; 代码运行 =&amp;gt; 更新 UI
 运用事件驱动思维进行编程，我们编写代码时的思路如下：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;开发静态页面&lt;/li&gt;
@@ -30,26 +110,26 @@
 &lt;p&gt;&lt;strong&gt;数据&lt;/strong&gt;
 什么是数据？引用官方的一句话“数据是事实或观察的结果，是对客观事物的逻辑归纳，适用于表示客观事物的未经加工的原始素材”嗯？这句话看起来有点晦涩难懂，其实数据无非是一堆能够用来体现事物属性，描述事务构成的东西。比如声音、图像等成为模拟数据，符号、文字等成为数字数据。
 ​&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;数据驱动思维：&lt;/strong&gt; 设计数据结构 =&amp;gt; 事件绑定逻辑 =&amp;gt; 数据变化 =&amp;gt; 更新UI
-运用数据驱动思维去实现编程，我们更多的是思考数据的维护和处理，而无需过于考虑UI的变化和事件的监听。
+&lt;p&gt;&lt;strong&gt;数据驱动思维：&lt;/strong&gt; 设计数据结构 =&amp;gt; 事件绑定逻辑 =&amp;gt; 数据变化 =&amp;gt; 更新 UI
+运用数据驱动思维去实现编程，我们更多的是思考数据的维护和处理，而无需过于考虑 UI 的变化和事件的监听。
 ​&lt;/p&gt;
 &lt;h2 id=&#34;事件驱动-vs-数据驱动&#34;&gt;事件驱动 VS 数据驱动&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;事件驱动&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;页面构建：设计DOM =&amp;gt; 生成DOM =&amp;gt; 事件绑定&lt;/li&gt;
-&lt;li&gt;事件监听：操作UI =&amp;gt; 触发事件 =&amp;gt; 响应处理 =&amp;gt; 更新UI&lt;/li&gt;
+&lt;li&gt;页面构建：设计 DOM =&amp;gt; 生成 DOM =&amp;gt; 事件绑定&lt;/li&gt;
+&lt;li&gt;事件监听：操作 UI =&amp;gt; 触发事件 =&amp;gt; 响应处理 =&amp;gt; 更新 UI&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;数据驱动&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;页面构建：设计数据结构 =&amp;gt; 事件绑定逻辑 =&amp;gt; 生成DOM&lt;/li&gt;
-&lt;li&gt;事件监听：操作UI =&amp;gt; 触发事件 =&amp;gt; 响应处理 =&amp;gt; 数据变化 =&amp;gt; 更新UI&lt;/li&gt;
+&lt;li&gt;页面构建：设计数据结构 =&amp;gt; 事件绑定逻辑 =&amp;gt; 生成 DOM&lt;/li&gt;
+&lt;li&gt;事件监听：操作 UI =&amp;gt; 触发事件 =&amp;gt; 响应处理 =&amp;gt; 数据变化 =&amp;gt; 更新 UI&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;数据驱动和事件驱动可以说有一个是被动的，一个是主动。事件驱动中必须有个引起事件的sender，而数据驱动是被动的，只要数据发生改变，就由下至上的传递到需要使用的地方，不受sender的控制。
-从事件驱动转变为数据驱动，在事件驱动的思维下我们会把组件视作DOM，把事件/逻辑处理视作Javascript，把样式视为CSS。转变到数据驱动思维之后，我们会把这些组件、事件、逻辑处理、样式都看作数据，我们需要做的只是对数据状态的处理。使用数据驱动的思维编程，我们将会有如下好处：&lt;/p&gt;
+&lt;p&gt;数据驱动和事件驱动可以说有一个是被动的，一个是主动。事件驱动中必须有个引起事件的 sender，而数据驱动是被动的，只要数据发生改变，就由下至上的传递到需要使用的地方，不受 sender 的控制。
+从事件驱动转变为数据驱动，在事件驱动的思维下我们会把组件视作 DOM，把事件/逻辑处理视作 Javascript，把样式视为 CSS。转变到数据驱动思维之后，我们会把这些组件、事件、逻辑处理、样式都看作数据，我们需要做的只是对数据状态的处理。使用数据驱动的思维编程，我们将会有如下好处：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;数据变化更方便&lt;/li&gt;
-&lt;li&gt;DOM结构更轻巧&lt;/li&gt;
-&lt;li&gt;DOM结构调整更低耗&lt;/li&gt;
+&lt;li&gt;DOM 结构更轻巧&lt;/li&gt;
+&lt;li&gt;DOM 结构调整更低耗&lt;/li&gt;
 &lt;li&gt;抽象设计&lt;/li&gt;
 &lt;li&gt;代码量相对减少，易于维护&lt;/li&gt;
 &lt;/ol&gt;

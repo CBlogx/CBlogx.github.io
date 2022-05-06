@@ -2,8 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://cblogx.github.io/categories/</loc>
+    <lastmod>2022-05-07T00:28:11+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://cblogx.github.io/zh-cn/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://cblogx.github.io/categories/"
+                />
+  </url><url>
+    <loc>https://cblogx.github.io/post/ccache%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%BF%AB%E5%86%85%E6%A0%B8%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/</loc>
+    <lastmod>2022-05-07T00:28:11+08:00</lastmod>
+  </url><url>
     <loc>https://cblogx.github.io/</loc>
-    <lastmod>2022-04-30T10:50:31+08:00</lastmod>
+    <lastmod>2022-05-07T00:28:11+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -15,8 +31,11 @@
                 href="https://cblogx.github.io/"
                 />
   </url><url>
+    <loc>https://cblogx.github.io/categories/linux/</loc>
+    <lastmod>2022-05-07T00:28:11+08:00</lastmod>
+  </url><url>
     <loc>https://cblogx.github.io/post/</loc>
-    <lastmod>2022-04-30T10:50:31+08:00</lastmod>
+    <lastmod>2022-05-07T00:28:11+08:00</lastmod>
   </url><url>
     <loc>https://cblogx.github.io/tags/</loc>
     <lastmod>2022-04-30T10:50:31+08:00</lastmod>
@@ -34,21 +53,11 @@
     <loc>https://cblogx.github.io/tags/web/</loc>
     <lastmod>2022-04-30T10:50:31+08:00</lastmod>
   </url><url>
-    <loc>https://cblogx.github.io/post/%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E5%92%8C%E8%B7%AF%E7%94%B1%E9%A9%B1%E5%8A%A8/</loc>
+    <loc>https://cblogx.github.io/categories/web/</loc>
     <lastmod>2022-04-30T10:50:31+08:00</lastmod>
   </url><url>
-    <loc>https://cblogx.github.io/categories/</loc>
-    <lastmod>2022-04-27T23:20:46+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://cblogx.github.io/zh-cn/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://cblogx.github.io/categories/"
-                />
+    <loc>https://cblogx.github.io/post/%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E5%92%8C%E8%B7%AF%E7%94%B1%E9%A9%B1%E5%8A%A8/</loc>
+    <lastmod>2022-04-30T10:50:31+08:00</lastmod>
   </url><url>
     <loc>https://cblogx.github.io/tags/git/</loc>
     <lastmod>2022-04-27T23:20:46+08:00</lastmod>

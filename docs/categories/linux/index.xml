@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Linux on Cheng の webstie</title>
+        <link>https://cblogx.github.io/categories/linux/</link>
+        <description>Recent content in Linux on Cheng の webstie</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Sat, 07 May 2022 00:28:11 +0800</lastBuildDate><atom:link href="https://cblogx.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Ccache使用加快内核编译速度</title>
+        <link>https://cblogx.github.io/post/ccache%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%BF%AB%E5%86%85%E6%A0%B8%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/</link>
+        <pubDate>Sat, 07 May 2022 00:28:11 +0800</pubDate>
+        
+        <guid>https://cblogx.github.io/post/ccache%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%BF%AB%E5%86%85%E6%A0%B8%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/</guid>
+        <description>&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;首先 sudo apt-get install ccache 进行安装&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 vim ~/.bashrc 或者 gedit ~/.bashrc 打开 bashrc 配置文件即可&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将下列代码块复制到 bashrc 文件的末尾(注意这 CCACHE_DIR 中的 ubuntu 指的是你的当前系统用户名)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;  &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;USE_CCACHE&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;
+  &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;CCACHE_DIR&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/home/ubuntu/.ccache&amp;#34;&lt;/span&gt;
+  &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;CC&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;ccache gcc&amp;#34;&lt;/span&gt;
+  &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;CXX&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;ccache g++&amp;#34;&lt;/span&gt;
+  &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;:/usr/lib/ccache&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;使用 source ~/.bashrc 使配置生效&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;检查，使用 which g++，若输出的为/usr/lib/ccache 则成功&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;内核态和用户态下的 ccache 并不相通&lt;/li&gt;
+&lt;li&gt;用户态下看到的是/usr/lib/ccache/g++&lt;/li&gt;
+&lt;li&gt;内核态下看到的是/usr/bin/g++（我的系统是这样显示的）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;使用 ccache -M 50G 来调整一下 ccache 的大小（50G 是根据自己需求大小来调整的）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用方法：
+编译普通 c 文件：输入 ccache gcc xxx（gcc xxx 为正常 gcc 编译命令）
+编译内核: 切换到 root，进入到你的 Linux 源码包
+使用 make 语句时加上 CC=&amp;lsquo;ccache gcc&amp;rsquo;
+即 make CC=&amp;lsquo;ccache gcc&amp;rsquo;
+（末尾可以加上 -j4 以更快的速度编译，前提 cpu 为四核）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ccache 实际上是利用了缓存机制来加速内核的编译，
+将编译过程中使用到 gcc/g++编译的部分保存下来，
+再次编译时则会跳过已编译且无更改的部分。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;初次使用时编译时间还没有改变，
+但是以后再编译时时间就会快很多
+（若更改了虚拟机的配置，可能会要重新配置 ccache）
+亲测内核编译从原本的 55 分钟变为了 15 分钟，爽啊！&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当然使用 ccache 也是会有缺点的，不过对正常使用的影响一般来说并不算
+大， 使用 ccache 之后能看到内存和磁盘的使用率会有显著的提高，对于内存偏小的
+朋友需要谨慎使用 ccache，否则可能会造成物理机无法正常使用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
