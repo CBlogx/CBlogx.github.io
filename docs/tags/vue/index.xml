@@ -36,11 +36,11 @@
 </description>
         </item>
         <item>
-        <title>Nuxt系列（1）初识SSR</title>
-        <link>https://cblogx.github.io/post/nuxt%E7%B3%BB%E5%88%971%E5%88%9D%E8%AF%86ssr/</link>
+        <title>什么是基于前端的SSR</title>
+        <link>https://cblogx.github.io/post/%E4%BB%80%E4%B9%88%E6%98%AF%E5%9F%BA%E4%BA%8E%E5%89%8D%E7%AB%AF%E7%9A%84ssr/</link>
         <pubDate>Mon, 18 Apr 2022 00:17:03 +0800</pubDate>
         
-        <guid>https://cblogx.github.io/post/nuxt%E7%B3%BB%E5%88%971%E5%88%9D%E8%AF%86ssr/</guid>
+        <guid>https://cblogx.github.io/post/%E4%BB%80%E4%B9%88%E6%98%AF%E5%9F%BA%E4%BA%8E%E5%89%8D%E7%AB%AF%E7%9A%84ssr/</guid>
         <description>&lt;h1 id=&#34;什么是-ssr&#34;&gt;什么是 SSR&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;首先让我们来了解一下 MPA、SPA,最后你就明白了什么是 SSR&lt;/p&gt;
@@ -80,7 +80,7 @@
 &lt;li&gt;首屏打开速度很慢，因为用户首次加载需要下载 SPA 框架及应用程序代码，必须等待 JS 执行完毕才能渲染出首屏。&lt;/li&gt;
 &lt;li&gt;不利于&lt;code&gt;SEO&lt;/code&gt;，爬虫只能拿到一个少量&lt;code&gt;html&lt;/code&gt;元素，认为页面是空的，不利于&lt;code&gt;SEO&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;ssr-服务端渲染&#34;&gt;SSR （服务端渲染）&lt;/h2&gt;
+&lt;h2 id=&#34;基于前端的-ssr-服务端渲染&#34;&gt;基于前端的 SSR （服务端渲染）&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;SSR&lt;/code&gt;并非传统完全基于后端的&lt;code&gt;SSR&lt;/code&gt;，而是基于前端的&lt;code&gt;SSR&lt;/code&gt;，是介于&lt;code&gt;MPA&lt;/code&gt;和&lt;code&gt;SPA&lt;/code&gt;之间的折中方案，后端渲染出首屏的&lt;code&gt;DOM&lt;/code&gt;结构返回，客户端拿到首屏内容，再用单页面路由和渲染，故称之为基于前端的&lt;code&gt;SSR&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;SSR 渲染过程：&lt;/strong&gt; 客户端发送请求到服务端，服务端读取对应&lt;code&gt;URL&lt;/code&gt;的模板信息，在服务端做出&lt;code&gt;html&lt;/code&gt;和数据的渲染，渲染完成后返回整个首屏的&lt;code&gt;html&lt;/code&gt;结构给客户端。所以当用户访问首屏时，速度就会相较于单纯使用&lt;code&gt;SPA&lt;/code&gt;的方式要快得多，但是该应用仍旧是一个&lt;code&gt;SPA&lt;/code&gt;应用。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;缺点：&lt;/strong&gt;&lt;/p&gt;
