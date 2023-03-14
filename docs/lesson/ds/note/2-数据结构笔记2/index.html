@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='内部排序 插入排序 直接插入排序： 描述：对A[n]进行排序，从头开始往后遍历。当前下标为k，记L = A[k]，首先从A[0]~A[k-1]从后往前'><title>数据结构笔记(2)</title>
+
+<link rel='canonical' href='https://cblogx.github.io/lesson/ds/note/2-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B02/'>
+
+<link rel="stylesheet" href="/scss/style.min.71a10a5a8df4e902adbab6676991f9d69975996d56fc6db2e8a9d011fcee4eec.css"><meta property='og:title' content='数据结构笔记(2)'>
+<meta property='og:description' content='内部排序 插入排序 直接插入排序： 描述：对A[n]进行排序，从头开始往后遍历。当前下标为k，记L = A[k]，首先从A[0]~A[k-1]从后往前'>
+<meta property='og:url' content='https://cblogx.github.io/lesson/ds/note/2-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B02/'>
+<meta property='og:site_name' content='小程同学的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Lesson' /><meta property='article:published_time' content='2023-03-13T21:35:35&#43;08:00'/><meta property='article:modified_time' content='2023-03-13T21:35:35&#43;08:00'/>
+<meta name="twitter:title" content="数据结构笔记(2)">
+<meta name="twitter:description" content="内部排序 插入排序 直接插入排序： 描述：对A[n]进行排序，从头开始往后遍历。当前下标为k，记L = A[k]，首先从A[0]~A[k-1]从后往前">
+    <link rel="shortcut icon" href="/images/favicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    " background="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img title="更新慢，下一个春天必上岸"src="/img/avatar_hud0f9858cd288fe1f888fe21021c89b8e_121090_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">💙</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">小程同学的博客</a></h1>
+            <h2 class="site-description">你的向往是我未曾到达的远方</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1650038332134" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9045" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300"><defs><style type="text/css">@font-face { font-family: feedback-iconfont; src: url("//at.alicdn.com/t/font_1031158_u69w8yhxdu.woff2?t=1630033759944") format("woff2"), url("//at.alicdn.com/t/font_1031158_u69w8yhxdu.woff?t=1630033759944") format("woff"), url("//at.alicdn.com/t/font_1031158_u69w8yhxdu.ttf?t=1630033759944") format("truetype"); }
+</style></defs><path d="M855.04 815.36c0 17.92-16.64 32-38.4 32H226.56c-20.48 0-38.4-14.08-38.4-32V371.2c0-17.92 16.64-32 38.4-32h590.08c20.48 0 38.4 14.08 38.4 32v444.16z" fill="#E1E0A6" p-id="9046"></path><path d="M816.64 860.16H226.56c-28.16 0-51.2-20.48-51.2-44.8V371.2c0-24.32 23.04-44.8 51.2-44.8h590.08c28.16 0 51.2 20.48 51.2 44.8v444.16c0 24.32-23.04 44.8-51.2 44.8zM226.56 352c-14.08 0-25.6 8.96-25.6 19.2v444.16c0 10.24 11.52 19.2 25.6 19.2h590.08c14.08 0 25.6-8.96 25.6-19.2V371.2c0-10.24-11.52-19.2-25.6-19.2H226.56z" fill="#231C1C" p-id="9047"></path><path d="M917.76 449.28c0 21.76-14.08 39.68-32 39.68L520.96 328.96 156.16 488.96c-17.92 0-32-17.92-32-39.68v-56.32c0-21.76 14.08-39.68 32-39.68l364.8-184.32 364.8 184.32c17.92 0 32 17.92 32 39.68v56.32z" fill="#6FB0BE" p-id="9048"></path><path d="M885.76 501.76c-1.28 0-3.84 0-5.12-1.28L520.96 343.04 161.28 500.48c-1.28 1.28-3.84 1.28-5.12 1.28-24.32 0-44.8-23.04-44.8-52.48v-56.32c0-28.16 17.92-51.2 40.96-52.48l362.24-183.04c3.84-1.28 7.68-1.28 11.52 0l362.24 183.04c23.04 2.56 40.96 24.32 40.96 52.48v56.32c1.28 28.16-17.92 52.48-43.52 52.48zM520.96 183.04l-358.4 181.76c-1.28 1.28-3.84 1.28-5.12 1.28-10.24 0-19.2 12.8-19.2 26.88v56.32c0 14.08 7.68 25.6 16.64 26.88l362.24-158.72c3.84-1.28 6.4-1.28 10.24 0l362.24 158.72c8.96-1.28 16.64-12.8 16.64-26.88v-56.32c0-15.36-8.96-26.88-19.2-26.88-2.56 0-3.84 0-6.4-1.28L520.96 183.04z" fill="#231C1C" p-id="9049"></path><path d="M623.36 848.64H445.44V634.88c0-17.92 15.36-30.72 33.28-30.72h111.36c17.92 0 33.28 12.8 33.28 30.72v213.76z" fill="#FDE8C2" p-id="9050"></path><path d="M623.36 861.44H445.44c-7.68 0-12.8-5.12-12.8-12.8V634.88c0-24.32 19.2-43.52 46.08-43.52h111.36c25.6 0 46.08 17.92 46.08 43.52v212.48c0 7.68-5.12 14.08-12.8 14.08z m-165.12-25.6h152.32V634.88c0-11.52-10.24-17.92-20.48-17.92h-111.36c-10.24 0-20.48 5.12-20.48 17.92v200.96z" fill="#231C1C" p-id="9051"></path></svg>
+                
+                <span>home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/post' >
+                
+                
+                
+                    <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1650886369944" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3585" data-spm-anchor-id="a313x.7781069.0.i1" width="500" height="500" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><style type="text/css">@font-face { font-family: feedback-iconfont; src: url("//at.alicdn.com/t/font_1031158_u69w8yhxdu.woff2?t=1630033759944") format("woff2"), url("//at.alicdn.com/t/font_1031158_u69w8yhxdu.woff?t=1630033759944") format("woff"), url("//at.alicdn.com/t/font_1031158_u69w8yhxdu.ttf?t=1630033759944") format("truetype"); }
+</style></defs><path d="M800 192L160 424.672 567.328 832 800 192z m-107.008 107.008l-151.488 416.672-107.008-106.976 161.888-213.088-213.088 161.888-106.976-107.008 416.672-151.488z" p-id="3586" data-spm-anchor-id="a313x.7781069.0.i0" class="selected"></path></svg>
+                
+                <span>All post</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://cblogx.github.io/" selected>中文</option>
+                        
+                            <option value="https://cblogx.github.io/en/" >English</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" />
+  <rect stroke="none" x="2" y="6" width="20" height="12" rx="6" fill="black" />
+  <circle cx="8" cy="12" r="3.5" fill="white" />
+</svg>
+
+
+
+                      <!-- 更改底部主题按钮样式 -->
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect stroke="none" x="2" y="6" width="20" height="12" rx="6" fill="white" />
+  <circle cx="16" cy="12" r="3.5" fill="black" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+  <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/lesson/ds/note/2-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B02/">数据结构笔记(2)</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 13, 2023</time>
+            </div>
+        
+
+        
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    
+                    阅读时长: 6 分钟
+                </time>
+            </div>
+        
+
+        
+         
+        <div>
+            <svg t="1650248083053" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9292" width="300" height="300"><path d="M597.333333 273.664L657.664 213.333333l195.84 195.669334L793.258667 469.333333z" p-id="9293" fill="#8a8a8a"></path><path d="M745.472 203.264L281.898667 666.837333l-39.253334 157.226667 157.184-39.296L863.402667 321.194667l-117.930667-117.930667zM981.333333 321.194667l-538.88 538.88L128 938.666667l78.634667-314.453334L745.472 85.333333 981.333333 321.194667z" p-id="9294" fill="#8a8a8a"></path></svg> 
+            <time class="article-words">
+                2745 words
+            </time>
+        </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header> <section class="article-content">
+    
+    
+    <!-- raw HTML omitted -->
+<h2 id="内部排序">内部排序</h2>
+<h3 id="插入排序">插入排序</h3>
+<h4 id="直接插入排序">直接插入排序：</h4>
+<p>描述：对A[n]进行排序，从头开始往后遍历。当前下标为k，记L = A[k]，首先从A[0]~A[k-1]从后往前依次比较元素大小，查找插入位置j；其次，插入位置后的元素依次后移一个位置；最后A[j] = L</p>
+<ol>
+<li>哨兵：哨兵值存放着当前插入元素值，由于插入元素不可能大于其本身，于是当插入元素比较到哨兵时便可知道自身值为最小。同时哨兵还能防止发生越界。</li>
+<li>时间复杂度：最好O(n)、最坏O(n^2)；空间复杂度：O(1)。算法稳定，适用于顺序、链式存储</li>
+</ol>
+<h4 id="折半插入排序">折半插入排序：</h4>
+<p>描述：建立在直接插入的基础上，不同点在于无哨兵且查找元素插入位置时采用折半查找，因为插入元素前面的序列都是有序的。
+比较次数为O(nlogn)，与待排序表的初始序列无关，取决于表中元素个数n。
+时间复杂度为O(n^2)，算法稳定。</p>
+<h4 id="希尔排序">希尔排序：</h4>
+<p>描述：将待排序表分隔成若干个形如L[i,i+d,i+2d,&hellip;,i+kd]的子表，在每个子表中采用直接排序排序；下一趟缩小d后再一次分割，再排序；重复此操作直至有序。该算法又称缩小增量排序
+空间复杂度O(1)，算法不稳定且仅适用于线性表。</p>
+<h3 id="交换排序">交换排序</h3>
+<h4 id="冒泡排序">冒泡排序：</h4>
+<p>描述：从前往后两两比较相邻元素，若大于(或小于)则交换它们，下一趟重复如上操作；每趟至少可以确定一个值的最终位置。
+时间复杂度O(n^2)，空间复杂度O(1)</p>
+<h4 id="快速排序">快速排序：</h4>
+<p>描述：基于分治思想，从待排序表L[1,&hellip;,n]中任选一个元素作为pivot(通常取首元素)，通过一趟排序将待排序表划分为两个独立的部分。
+过程解析：设置两个指针low、high分别指针排序表的表头和表尾，并从表中表头元素作为pivot。</p>
+<ol>
+<li>首先high指针往前遍历找到一个小于pivot的元素k，然后将k的值交换到low所指向的位置。</li>
+<li>接着low向后移动，找到一个值大于pivot的元素j，然后将j的值交换到high所指向的位置。</li>
+<li>重复上述步骤直至low==high，此时low所指向的位置便为pivot的最终位置，记为一趟排序。</li>
+<li>待经过1、2、3后排序表被划分为多个独立的表，分别对这些表再次进行上述步骤即可。。
+优化思想：任选一个元素作为pivot，此时交换操作需要等到上述步骤3中才能进行
+时间复杂度：最好O(nlog2n)，最坏O(n^2)；空间复杂度：最好O(log2n)，最坏O(n)，平均O(log2n)
+算法不稳定，平均性能最优</li>
+</ol>
+<h3 id="选择排序">选择排序</h3>
+<p>简单选择：每趟选择一个为排序序列中最大或最小的元素与序列头/尾的元素交换。每趟能确定一个元素的最终位置。
+时间复杂度：O(n^2)，空间复杂度O(1)</p>
+<h3 id="堆排序">堆排序</h3>
+<p>排序过程：从最后一个元素开始向上进行如下操作：检查当前结点是否满足根&gt;=左右(大根堆)，若不满足则将当前结点与更大的一个孩子交换。
+插入操作：将当前元素插入到堆尾，依次向上进行排序调整。
+删除操作：将堆顶元素删除后选取堆的最后一个元素交换到堆顶，此时堆的性质被破坏，需要从堆顶往下依次进行调整。
+关键字比较次数：不超过4n
+时间复杂度：建堆O(n)，每次调整时间为O(h)，最好、最坏、平均情况下，时间复杂度为O(nlog2n)。
+空间复杂度：O(1)</p>
+<h3 id="归并排序">归并排序</h3>
+<p>描述：将两个或两个以上的有序表合成一个新的有序表。需要先把要合并的有序表复制到辅助数组中再从各个有序段中取出一个记录进行关键字比较，较小者放入原表。
+n路归并：将n个的有序表合并成一个新的有序表
+整个排序需要logkM(向上取整，k路归并，M个元素)趟排序，每趟排序需要将m个元素分成各含m/n个子表。
+时间复杂度：O(nlog2n)；空间复杂度：O(n)</p>
+<h3 id="基数排序">基数排序</h3>
+<blockquote>
+<p>最高位优先或最低位优先
+思想：借助多关键字的排序思想来对单逻辑关键字进行排序，关键字必须能够比较大小
+时间复杂度O(d(n+r)) 空间复杂度O(r)，算法稳定</p>
+</blockquote>
+<h3 id="总结">—总结</h3>
+<ol>
+<li>对任意n个关键字排序的比较次数至少为<a class="link" href="%e5%90%91%e4%b8%8a%e5%8f%96%e6%95%b4" >log2(n!)</a>次</li>
+</ol>
+<h2 id="逻辑结构与存储结构">逻辑结构与存储结构</h2>
+<h3 id="逻辑结构">逻辑结构</h3>
+<p>线性结构：一般线性表、栈、队列、串、数组
+非线性：集合、树、图</p>
+<h3 id="存储结构">存储结构</h3>
+<p>顺序存储、链式存储、索引存储、散列存储
+判断方法：能够采取多种存储方式的结构为逻辑结构，只能采取一种存储方式的为存储结构。
+例如：</p>
+<ol>
+<li>线索二叉树： 二叉树是逻辑结构，但线索二叉树是加上线索后的【链表结构】，因此是存储结构。</li>
+<li>静态链表：是用【一片连续的空间（数组，顺序）】来存储实现的，故静态链表是存储结构。</li>
+<li>有向图：可以用【邻接表】或【邻接矩阵】两种实现，故有向图是逻辑结构。</li>
+<li>二叉树：可以用【数组】或【指针（链式）】实现，故二叉树是逻辑结构。</li>
+<li>散列表：用的是【散列（哈希）】存储，即根据元素的关键字直接计算出该元素的存储地址，故是存储结构。6. 循环队列：用【数组】求余实现，故是存储结构。</li>
+<li>顺序表：用【数组】实现，故是存储结构。</li>
+</ol>
+<h2 id="栈和树的微妙联系">栈和树的微妙联系</h2>
+<p>出栈次序：n 个不同的元素进栈，出栈元素的不同排列个数为 1/(n+1)*2n!/n!(2n-n)!
+前序遍历：相当于以前序序列为入栈次序
+中序遍历：相当于以后序序列为出栈次序
+因为前序遍历和中序遍历可以唯一确定一棵树，因此当给出前序序列要求确定序列对应的不同二叉树的棵数时可以将问题转化为&quot;给定一个入栈(前序)序列，求出栈(中序)序列有多少种&quot;</p>
+<h2 id="图的简单知识速览">图的简单知识速览</h2>
+<blockquote>
+<p>假设图中有 n 个结点</p>
+</blockquote>
+<ol>
+<li>无向图的|E|取值范围为(0, n(n-1)/2) |E|取最大值时称为完全图；有向图|E|取值范围为(0, n(n-1)) |E|取最大值时称为有向完全图。</li>
+<li>G=(V,E) G1=(V1, E1)，若 V1 为 V 子集且 E1 为 E 子集，那么 G1 为 G 的子图，若 V1=V，则 G 为生成子图(包含所有顶点)</li>
+<li>连通图的生成树是包含图中全部顶点的一个极小连通子图。非连通图中，连通分量的生成树构成了非连通图的生成森林。（极大：连通子图包含尽可能多的边，极小：连通子图包含尽可能少的边）</li>
+<li>无向图顶点 v 的度为依附于 v 的边的条数，全部顶点度数之和 = 边数之和的两倍；有向图则分为入度(以 v 为终点)、出度(以 v 为起点)，入度之和 = 出度之和 = 边数两倍</li>
+<li>图 G 满足|E| &lt; |V|log|V|时为稀疏图，反之为稠密图</li>
+<li>顶点不重复出现的路径成为简单路径；除了第一个顶点和最后一个顶点相同以外，路径上其余顶点不重复出现的路径成为简单回路。当|E| &gt; n-1 时一定有环。</li>
+<li>顶点 u 到 v 之间不存在路径，记该距离为 ∞</li>
+<li>有向树：根结点入度为 0，其余结点入度为 1</li>
+</ol>
+<h2 id="快速判断哈夫曼编码技巧">快速判断哈夫曼编码技巧</h2>
+<p>拥有同一双亲的叶结点编码长度相同，末位不同。</p>
+<h2 id="希尔排序增量快速判断">希尔排序增量快速判断</h2>
+<p>观察初始数据与第一趟排序中位置发生变化的某个数，测算变化间隔 k，检验 k/2，2*k 位置是否符合增序/降序</p>
+<h2 id="c-语言初始化">C 语言初始化</h2>
+<p>int a[n];
+memset(a, &ldquo;1&rdquo;, n*sizeof(int));</p>
+<h2 id="有向无环图描述表达式">有向无环图描述表达式</h2>
+<blockquote>
+<p>做图步骤：</p>
+</blockquote>
+<ol>
+<li>标出各个运算符的生效次序，按运算可并列性各层依次加入操作数结点</li>
+<li>按顺序加入运算符，当需要用到另一个运算结果时产生分层(后来者在顶层)</li>
+</ol>
+<h2 id="快速判断队列出队入队序列">快速判断队列出队/入队序列</h2>
+<p>出队：入队序列由外向内递减</p>
+
+</section>
+ <footer class="article-footer">
+    
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+
+
+    </footer>
+
+  
+</article>
+
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="CBlogx/CBlogx.github.io"
+        issue-term="title"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+  <section class="copyright">
+    &copy;  2020 -  2023 小程同学的博客
+  </section>
+
+  <section class="powerby">
+     Website Built By Cheng <br />
+    
+  </section>
+</footer>
+
+
+<script
+  type="text/javascript"
+  async
+  src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[\[','\]\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+           extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+
+  MathJax.Hub.Queue(function() {
+      
+      
+      
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i = 0; i <all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<style>
+  code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+  }
+</style>
+
+
+    
+
+  
+  
+
+  
+  
+    
+    
+
+    
+    
+        
+
+        
+
+        
+
+        
+        
+        
+      
+
+      
+    
+
+
+
+
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#内部排序">内部排序</a>
+      <ol>
+        <li><a href="#插入排序">插入排序</a>
+          <ol>
+            <li><a href="#直接插入排序">直接插入排序：</a></li>
+            <li><a href="#折半插入排序">折半插入排序：</a></li>
+            <li><a href="#希尔排序">希尔排序：</a></li>
+          </ol>
+        </li>
+        <li><a href="#交换排序">交换排序</a>
+          <ol>
+            <li><a href="#冒泡排序">冒泡排序：</a></li>
+            <li><a href="#快速排序">快速排序：</a></li>
+          </ol>
+        </li>
+        <li><a href="#选择排序">选择排序</a></li>
+        <li><a href="#堆排序">堆排序</a></li>
+        <li><a href="#归并排序">归并排序</a></li>
+        <li><a href="#基数排序">基数排序</a></li>
+        <li><a href="#总结">—总结</a></li>
+      </ol>
+    </li>
+    <li><a href="#逻辑结构与存储结构">逻辑结构与存储结构</a>
+      <ol>
+        <li><a href="#逻辑结构">逻辑结构</a></li>
+        <li><a href="#存储结构">存储结构</a></li>
+      </ol>
+    </li>
+    <li><a href="#栈和树的微妙联系">栈和树的微妙联系</a></li>
+    <li><a href="#图的简单知识速览">图的简单知识速览</a></li>
+    <li><a href="#快速判断哈夫曼编码技巧">快速判断哈夫曼编码技巧</a></li>
+    <li><a href="#希尔排序增量快速判断">希尔排序增量快速判断</a></li>
+    <li><a href="#c-语言初始化">C 语言初始化</a></li>
+    <li><a href="#有向无环图描述表达式">有向无环图描述表达式</a></li>
+    <li><a href="#快速判断队列出队入队序列">快速判断队列出队/入队序列</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<script type="module" src="/js/background.js"></script>
+
+
+    </body>
+</html>

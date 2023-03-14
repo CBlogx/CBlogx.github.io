@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>考研笔记 on 小程同学的博客</title>
+        <link>https://cblogx.github.io/tags/%E8%80%83%E7%A0%94%E7%AC%94%E8%AE%B0/</link>
+        <description>Recent content in 考研笔记 on 小程同学的博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Mon, 13 Mar 2023 21:32:38 +0800</lastBuildDate><atom:link href="https://cblogx.github.io/tags/%E8%80%83%E7%A0%94%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>数据结构笔记(1)</title>
+        <link>https://cblogx.github.io/lesson/ds/note/1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B01/</link>
+        <pubDate>Mon, 13 Mar 2023 21:32:38 +0800</pubDate>
+        
+        <guid>https://cblogx.github.io/lesson/ds/note/1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AC%94%E8%AE%B01/</guid>
+        <description>&lt;h2 id=&#34;无有向图中连通图分量至少多少条边非连通图分量至多多少条边&#34;&gt;无/有向图中连通图(分量)至少多少条边？非连通图(分量)至多多少条边？&lt;/h2&gt;
+&lt;h3 id=&#34;无向图&#34;&gt;无向图&lt;/h3&gt;
+&lt;p&gt;连通图：至少n个结点n-1边即可构成连通图，例如树
+非连通图：至多(n-1)!/2!(n-3)!条边，即排列组合Cn公式&lt;/p&gt;
+&lt;h3 id=&#34;有向图&#34;&gt;有向图&lt;/h3&gt;
+&lt;p&gt;连通分量：n个顶点至少n条边，例如一个简单环路
+非连通分量：？&lt;/p&gt;
+&lt;h2 id=&#34;prim算法&#34;&gt;Prim算法&lt;/h2&gt;
+&lt;h3 id=&#34;描述&#34;&gt;描述&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;初始任取一点，加入顶点集T&lt;/li&gt;
+&lt;li&gt;选择与T中顶点距离最近的点加入T&lt;/li&gt;
+&lt;li&gt;重复1,2直至所有的点都加入T中&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;特点&#34;&gt;特点&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;最小生成树可能不唯一&lt;/li&gt;
+&lt;li&gt;适合边稠密图（主要从选择顶点入手并非边）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;时间复杂度&#34;&gt;时间复杂度&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;分析&lt;/strong&gt;：O(|V|^2)，每次都需要一次比较剩余顶点与T中每个顶点的距离找到最小值&lt;/p&gt;
+&lt;h2 id=&#34;kruskal算法&#34;&gt;Kruskal算法&lt;/h2&gt;
+&lt;h3 id=&#34;描述-1&#34;&gt;描述：&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;初始时T为拥有所有顶点但无边的集合{V,(E){}}&lt;/li&gt;
+&lt;li&gt;每次选取剩余最小权值且顶点落在T中不同连通分量的边加入T中的边集E&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;特点-1&#34;&gt;特点：&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;最小生成树唯一&lt;/li&gt;
+&lt;li&gt;适用于顶点多的图（主要从边入手并非选择顶点）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;时间复杂度-1&#34;&gt;时间复杂度：&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;分析&lt;/strong&gt;：O(|E|log|E|)，kruskal采用堆存放边集合，并使用并查集描述T&lt;/p&gt;
+&lt;h2 id=&#34;dijkstra算法&#34;&gt;Dijkstra算法&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;构造两个辅助数组：{
+Dist[ ]： 记录从源点v0到其他各顶点当前的最短路径。初始化，若v0到vi有边相连，则dist[i] = 边权值，否则Dist[i] = ∞
+Path[ ]： path[i] 表示当前从v0出发到其余各顶点的最短路径的前驱结点。例如：v0-&amp;gt;v1-&amp;gt;v3-&amp;gt;v6，则path[6] = 3
+}&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;描述-2&#34;&gt;描述&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;此处求v0到其余顶点的最短路径&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;初始化顶点集合S = {0}，dist[i] = arcs[0][i]&lt;/li&gt;
+&lt;li&gt;从dist中挑出当前最短路径的顶点vj加入S&lt;/li&gt;
+&lt;li&gt;以新加入的vj作为出发点，更新dist[i] = min{arcs[0][i], arcs[0][j] + arcs[j][i]}&lt;/li&gt;
+&lt;li&gt;重复2，3直至所有顶点均包含在S中&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;特点-2&#34;&gt;特点&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;求单源最短路径&lt;/li&gt;
+&lt;li&gt;不可以求解带有负权的路径&lt;/li&gt;
+&lt;li&gt;基于贪心策略&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;时间复杂度-2&#34;&gt;时间复杂度&lt;/h3&gt;
+&lt;p&gt;邻接矩阵：O(|V|^2)，因为每次都需要遍历所有结点找到相邻边
+邻接表：O(|V|^2)，每次挑选最小值都要遍历整个dist[ ]
+若需要达到floyd的效果，则需要O(|V|^3)&lt;/p&gt;
+&lt;h2 id=&#34;floyd算法&#34;&gt;Floyd算法&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;构造两个辅助数组：{
+Dist[i][j]：记录vi,vj之间的最短路径值
+Path[i][j]：记录vi—&amp;gt;vj最短路径的下一结点(中转点)
+}&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;描述-3&#34;&gt;描述：&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;初始化Dist[i][j] = arcs[i][j]&lt;/li&gt;
+&lt;li&gt;将v0作为中间顶点，更新Dist[i][j] = min{Dist[i][j], Dist[i][0]+Dist[0][j]} (遍历所有结点) path[i][j] = 0&lt;/li&gt;
+&lt;li&gt;依次将vk作为中间结点更新Dist, Path[i][j] = k&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;特点-3&#34;&gt;特点：&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;求解每对顶点的最短路径&lt;/li&gt;
+&lt;li&gt;可以求解带有负权边且非负权环路的最短路径&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;时间复杂度ov3&#34;&gt;时间复杂度：O(|V|^3)&lt;/h3&gt;
+&lt;h2 id=&#34;求关键路径的步骤&#34;&gt;求关键路径的步骤&lt;/h2&gt;
+&lt;p&gt;定义：从源点到汇点具有最大路径长度的路径&lt;/p&gt;
+&lt;h3 id=&#34;求解步骤&#34;&gt;求解步骤：&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;求出每个事件(顶点)的最早开始时间ve(k)，从源点出发，按拓扑有序路径求&lt;/li&gt;
+&lt;li&gt;求出每个事件(顶点)的最迟开始时间vl(k)，从汇点出发，按逆拓扑有序路径求&lt;/li&gt;
+&lt;li&gt;求出每个活动(边)的最早开始时间e(i)&lt;/li&gt;
+&lt;li&gt;求出每个活动(边)的最晚开始时间l(i)&lt;/li&gt;
+&lt;li&gt;求出d(i) = l(i)-e(i)，d(i) = 0即为关键路径上的事件&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;asl查找成功和查找失败的计算方法&#34;&gt;ASL查找成功和查找失败的计算方法&lt;/h2&gt;
+&lt;h3 id=&#34;查找成功&#34;&gt;查找成功&lt;/h3&gt;
+&lt;p&gt;所要查询的数据一定能在散列表中查找得到，平均查找长度为各个元素的比较次数。例如(1,2,3,4,5,6)，使用Hash(key) mod 8 装入长度为20的散列表，那么此时平均查找成功长度为 [ 1/6 * (6个元素比较次数之和) ]&lt;/p&gt;
+&lt;h3 id=&#34;查找失败&#34;&gt;查找失败&lt;/h3&gt;
+&lt;p&gt;一定是不在散列表中的数据，比较次数为当前查找失败对象往后比较到第一个空单元或超出散列表，其查找个数需要根据散列函数而定，例如Hash(key) mod 8，那么即使当前散列表长度为20，查找失败的对象也不会超过8，因为散列的映射地址不会&amp;gt;8，即平均查找失败长度为 [ 1/8 * (8个散列单元查找失败时的比较次数之和) ]&lt;/p&gt;
+&lt;h2 id=&#34;队列&#34;&gt;队列&lt;/h2&gt;
+&lt;p&gt;此处 front指向队头，rear指向下一个插入元素的位置，有的情况是rear指向队尾元素
+front：队头，用于完成出队操作
+rear：队尾，用于完成入队操作
+队列中元素的个数：(rear - front + MaxSize) % MaxSize
+入队时会执行 Q[rear] = n ; (rear + 1 )%MaxSize
+出队时会执行 n = Q[front] ; (front + 1)%MaxSize&lt;/p&gt;
+&lt;h2 id=&#34;压缩矩阵&#34;&gt;压缩矩阵&lt;/h2&gt;
+&lt;p&gt;三角矩阵中，上(下)三角区中的值均为同一常数值，一般存储在数组的末尾，仅需一单元即可&lt;/p&gt;
+&lt;h2 id=&#34;深度为h的平衡二叉树所拥有的最少结点数&#34;&gt;深度为h的平衡二叉树所拥有的最少结点数&lt;/h2&gt;
+&lt;p&gt;n(0) = 0，n(1) = 1，n(2) = 2，n(h) = n(h-1) + n(h-2)+1，此时该平衡二叉树中的所有结点的平衡因子均为1
+助记：h平2树，至少12前2和+1&lt;/p&gt;
+&lt;h2 id=&#34;红黑树&#34;&gt;红黑树&lt;/h2&gt;
+&lt;h3 id=&#34;定义&#34;&gt;定义&lt;/h3&gt;
+&lt;p&gt;原则：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;值：左子树 &amp;lt; 根结点 &amp;lt; 右子树 （左根右）&lt;/li&gt;
+&lt;li&gt;根结点和叶子结点(虚构外部结构，null结点，即查找失败的结点)均为黑色（根叶黑）&lt;/li&gt;
+&lt;li&gt;不存在两个相邻的红结点(不红红)&lt;/li&gt;
+&lt;li&gt;对于每个结点，从该结点到任一叶结点的简单路径上，所含黑结点均相同(黑路同)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;黑高：从某结点(不包含该结点)出发到达叶结点的简单路径上的黑结点的总数称为该结点的黑高&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;结论1：从根到叶结点的最长路径不大于最短路径的2倍&lt;/li&gt;
+&lt;li&gt;结论2：有n个内部结点的红黑树的高度h &amp;lt;= 2log(n+1)&lt;br&gt;
+解释：若树高为h，那么从根结点出发到每个叶子结点的路径上黑高均为k，为使h达到最大值，那么每两个黑结点之间插入一个红结点，从而有k&amp;gt;=h/2，使得n&amp;gt;=2^(h/2)-1，从而上述有表达式&lt;/li&gt;
+&lt;li&gt;结论3：根结点黑高为h的红黑树的内部结点至少有2^h-1个&lt;br&gt;
+解释：最少的情况总共h层黑结点的满树形态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;插入原则&#34;&gt;插入原则&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;新结点为根结点染为黑色&lt;/li&gt;
+&lt;li&gt;新结点非根，染为黑色
+&lt;ul&gt;
+&lt;li&gt;若满足RBT定义，结束&lt;/li&gt;
+&lt;li&gt;不满足RBT&lt;br&gt;
+（1）黑叔：旋转+染色（取反色）&lt;br&gt;
+1). LL：右单旋，父换爷+染色&lt;br&gt;
+2). RR：左单旋，父换爷+染色&lt;br&gt;
+3). LR：左，右双旋，儿换爷+染色&lt;br&gt;
+4). RL：右，左双旋，儿换爷+染色&lt;br&gt;
+（2）红叔：染色+变新
+叔父爷染色，爷变新结点&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;拓扑序列&#34;&gt;拓扑序列&lt;/h2&gt;
+&lt;p&gt;任一有向图，如果它的邻接矩阵中对角线以下的元素均为零，则存在拓扑序列（可能不唯一）。例如：1-&amp;gt;3, 2-&amp;gt;3.此时存在两个拓扑序列
+反之，若图存在拓扑序列，却不一定能满足邻接矩阵中主对角线以下的元素均为零，但可通过适当调整结点编号，使其满足唯一特性。
+例如：1—&amp;gt;4—&amp;gt;3—&amp;gt;2&lt;/p&gt;
+&lt;h2 id=&#34;最佳归并树哈夫曼树&#34;&gt;最佳归并树/哈夫曼树&lt;/h2&gt;
+&lt;p&gt;最佳归并树思想适用于 &amp;ldquo;多个初始归并段&amp;rdquo; 已有序的情况，能够最大限度的减少归并中需要比较的次数&lt;/p&gt;
+&lt;h3 id=&#34;描述-4&#34;&gt;描述&lt;/h3&gt;
+&lt;p&gt;当初始归并段不足以构成一棵严格k叉树时，添加长度为0的虚段
+n(0) = (k-1)n(k) + 1，n(k) = (n(0) - 1)/(k - 1)
+(n(0) - 1)%(k - 1) = u
+若u = 0 则正好可以构建严格的k叉哈夫曼树
+否则需要补上k - u - 1个空归并段
+补充：严格k叉树遵从每个结点都有k个子树，且只会有度为k和度为0的结点，而在最佳归并树中叶子结点和归并段一一对应(包括空段)，nk+n0 = knk + 1，只要计算出还差多少个度为0的结点就能使等式满足，则需要补充的空段就为多少个。哈夫曼树就是一个严格2叉树&lt;/p&gt;
+&lt;p&gt;比较次数 = 带权路径长度 - 归并次数（每次归并的最后一个数无需比较）
+IO次数 = 带权路径长度&lt;/p&gt;
+&lt;p&gt;m路平衡归并排序的过程中，为实现输入/内部归并/输出的并行处理，需要设置2m个输入缓冲区和2个数处缓冲区
+在m路平衡归并排序的过程中，如果只是想实现归并排序，只需m个输入缓冲区和1个输出缓冲区即可，实现并行处理只需要每种缓冲区数量*2即可&lt;/p&gt;
+&lt;h2 id=&#34;kmp算法next数组&#34;&gt;KMP算法——Next数组&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;此处下标从0开始
+Next[j]的含义：在子串的第j个字符与主串发生失配时，跳转到子串的next[j]位置从新与主串当前位置进行比较&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;根据前后缀的最长匹配长度写出部分匹配值数组PM，例如abcac的PM值为00010
+此时 移动位数 = 已匹配字符数 - 最后一个匹配成功字符的部分匹配值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;PM表中的数组右移一位得到Next数组，例如abcac的Next数组-10001
+此时 移动位数 = 已匹配字符数 - 匹配失败字符的部分匹配值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;优化Next数组得到NextVal数组
+优化法则：Next[j] = Next[Next[j]] 直至Next[j]对应的字符与当前失配的字符不再匹配。
+举例说明：若当前失配字符为a，假设Next[k] = 3,，Next[3] = 0，Next[3]对应a字符，Next[0]对应b字符，因为当前字符pk不等于a，故跳转到字符为a的位置再进行将毫无意义，故应将Next数组按优化方案优化。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;图的邻接矩阵&#34;&gt;图的邻接矩阵&lt;/h2&gt;
+&lt;p&gt;图的邻接矩阵A中的第i行第j列代表从顶点i到j是否有边相邻。
+A^m (2&amp;lt;=m&amp;lt;=n)= A&lt;em&gt;A&lt;/em&gt;A&amp;hellip; 中的第i行第j列中的非零元素所表示的含义是：从图中顶点i到顶点j长度为m的路径条数。&lt;/p&gt;
+&lt;h2 id=&#34;快速判定折半查找判定树&#34;&gt;快速判定折半查找判定树&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;折半查找树实质上为二叉排序中，其中序序列是有序的，故首先按中序填上编号&lt;/li&gt;
+&lt;li&gt;树中向上/下取整只能有一种方法，向上取整时非叶结点左子树的结点树&amp;gt;=右子树(判断及其容易)，向下取整则相反。&lt;/li&gt;
+&lt;li&gt;由2性质可以推出不存在对称的折半查找非满树&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;树和森林的遍历与二叉树遍历的对应关系&#34;&gt;树和森林的遍历与二叉树遍历的对应关系&lt;/h2&gt;
+&lt;p&gt;树：先根遍历—&amp;gt; 森林：先序遍历 —&amp;gt;二叉树：先序遍历
+树：后根遍历—&amp;gt; 森林：中序(后根)遍历 —&amp;gt;二叉树：中序遍历
+先根对先序，中后根对中序
+可以先把树和森林按孩子兄弟表示法转发为二叉树后再与原来的遍历序列对比的到次序&lt;/p&gt;
+&lt;h2 id=&#34;拓扑有序序列补充&#34;&gt;拓扑有序序列补充&lt;/h2&gt;
+&lt;p&gt;逆拓扑有序：按照出度为0的次序依次输出。正好符合DFS的退栈操作，即在DFS遍历过程中在顶点退栈前输出。
+操作描述：（可以采用逆邻接表(以入度为标准)存储）&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;从AOV网中选择一个没有出度为0的顶点并输出。&lt;/li&gt;
+&lt;li&gt;从网中删除该顶点和所有以它为终点的有向边&lt;/li&gt;
+&lt;li&gt;重复1、2直至AOV网为空&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;若各个顶点已经排在一个线性有序的序列中，每个顶点有唯一的前驱后继关系，则拓扑排序结果唯一
+邻接矩阵为三角矩阵则存在拓扑序列，反之不一定成立。&lt;/p&gt;
+&lt;h2 id=&#34;前缀特性编码与01串&#34;&gt;前缀特性编码与0/1串&lt;/h2&gt;
+&lt;p&gt;数据结构：二叉树，每个编码对应于从根开始到达某叶结点的一条路径，路径长度等于编码位数，路径到达的叶结点中保存该编码对应的字符。哈夫曼编码具有前缀特性，但并不是具有前缀特性的编码都可以制成哈夫曼树。
+（二叉树既可用于保存各字符编码，又可用于检测编码是否具有前缀特性）&lt;/p&gt;
+&lt;p&gt;译码描述：从左至右依次扫描0/1串中的各位。从根结点开始沿着当前结点的左指针或右指针下移（可以是0/1均可选择移动到右指针或左指针），直至移动到叶结点为止，输出叶结点中保存的字符，然后按照这个过程直至0/1串结束，译码完成。&lt;/p&gt;
+&lt;p&gt;判断字符集是否具有前缀特性：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;初始化时，二叉树中仅含有根结点，依次读入每个编码C，建立对应的编码路径，规则如下：&lt;/li&gt;
+&lt;li&gt;从左向右扫描各个位，根据当前位数值(0/1)沿着子指针(向左/右)移动到下一层，遇到空结点则创建新结点&lt;/li&gt;
+&lt;li&gt;若遇到叶子结点，则表明该字符集不具备前缀编码特性。遇到叶子结点表明某个字符的编码包含在当前的编码串中，违背了前缀特性。&lt;/li&gt;
+&lt;li&gt;若在处理C的所有位的过程均没有创建新结点，则表明不具备前缀特性。&lt;/li&gt;
+&lt;li&gt;处理C的最后一个编码位时创建了新结点，则继续验证下一个编码。&lt;/li&gt;
+&lt;li&gt;所有编码均通过验证，则该字符集具有前缀特性。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;并查集&#34;&gt;并查集&lt;/h2&gt;
+&lt;p&gt;存储结构：双亲表示法的树
+数据结构：UFSets数组，单元值A&amp;lt;0代表该单元对应的结点为根结点，此时A的绝对值代表以该结点为根的树含有|A|个结点
+Union操作优化：小树合并到大树。
+Find操作最好时间复杂度为O(1)，最坏时间复杂度为O(n)，Union优化后最坏时间复杂度为O(log2n)即合并后的树高，采用压缩路径后的最坏时间复杂度为O(a(n))&amp;lt;O(log2n)，a(n)约为常量级
+应用：实现克鲁斯卡尔算法的到最小生成树、判断无向图的连通性、判断图中是否有环
+应用题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;画图，并查集的合并过程：小树向大树合并原则&lt;/li&gt;
+&lt;li&gt;Find的压缩路径。将查找某个结点的路径上的点都直接挂载到根结点下。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;哈夫曼树补充与定长编码集的树形形态&#34;&gt;哈夫曼树补充与定长编码集的树形形态&lt;/h2&gt;
+&lt;p&gt;哈夫曼树：出现频次不同的字符可能处于相同层次，例如出现频次最少的两个字符在某种方案下一定位于最底层。&lt;/p&gt;
+&lt;p&gt;定长编码：所有字符的编码长度固定，例如ascii码
+树形结构：所有的字符一定都处于最底层；叶子结点均有值，非叶结点中均不含有值，与哈夫曼同；不一定是完全二叉树，例如0001、1000构建的树与完全二叉树相差甚远。&lt;/p&gt;
+&lt;p&gt;哈夫曼树与定长编码树的结点数不一定相同。&lt;/p&gt;
+&lt;h2 id=&#34;影响散列方法平均查找长度的因素&#34;&gt;影响散列方法平均查找长度的因素&lt;/h2&gt;
+&lt;p&gt;影响因素：装填因子、散列函数、冲突解决策略&lt;/p&gt;
+&lt;p&gt;解释：
+装填因子：表中记录数/散列表长度&lt;/p&gt;
+&lt;p&gt;判断方法：考虑该因素的值的改变是否会导致平均查找长度的增加。例如：装填因子的值增大表明该散列表中的记录存储率较高因而容易发生查找冲突；而记录数增高不一定会引起平均查找长度增加，当记录数增加时，若散列表同时变长，那么平均查找长度可能不会发生变化，因此不能单单从记录数方面看待问题，要一分为二的看问题。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

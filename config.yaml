@@ -39,6 +39,7 @@ params:
   # 在首页和归档页面输出来自指定section的文章
   mainSections:
     - post
+    - lesson
   # 特色图片使用的字段，默认为image
   featuredImageField: image
   # rss输出文章完整内容
